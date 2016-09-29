@@ -1,0 +1,2 @@
+/usr/bin/ar cr libfoot_stand.a  CMakeFiles/foot_stand.dir/src/CLI.c.o CMakeFiles/foot_stand.dir/src/state.c.o CMakeFiles/foot_stand.dir/src/gui.c.o
+/usr/bin/ranlib libfoot_stand.a
