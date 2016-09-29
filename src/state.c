@@ -69,7 +69,8 @@ int16_t stateMachine(test_param_t *pParam_t)
 
 		case hold:
 //KAS- unreachable code because this is in the "else" for pParam_t->bCommandFlag already
-			if(pParam_t->bCommandFlag)
+//will comment out and checkfunc, was most likely concerned about
+	/*		if(pParam_t->bCommandFlag)
 			{
 				if(pParam_t->command == hold)
 				{
@@ -91,19 +92,15 @@ int16_t stateMachine(test_param_t *pParam_t)
 			}
 			else
 			{
+			*/
 				newState = hold;
-			}
+			//}
 			break;
 		case reset:
 //KAS- the else is unreachable.  also, it's the same thing.  this will get stuck without a keyboard command 
-			if(!pParam_t->bCommandFlag)
-			{
+			//removed redudant case -RS
 				newState = reset;
-			}
-			else
-			{
-				newState = reset;
-			}
+
 			break;
 
 		default:
@@ -124,7 +121,8 @@ int16_t stateMachine(test_param_t *pParam_t)
  * @return int substate
  */
 //KAS- i would just call this a bool and not a statemachine and just have getFootContact since that's the only thing this is used for
-bool bSubStateMachine(data_t *pSample_t)
+//RS - This is just changing the name of the function right?   I will change bSubStateMachine to bSensorContact
+bool SensorContact(data_t *pSample_t)
 {
 	int16_t newSubState;
 

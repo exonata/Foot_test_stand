@@ -76,7 +76,7 @@ void initTest()
 	pParam->bDownFlag = false;
 	for(int16_t numS = sample_A; numS < MAX_SAMPLE; numS ++)
 	{
-		pSamples[numS]->bCurrentSensorContact = bSubStateMachine(pSamples[numS]);
+		pSamples[numS]->bCurrentSensorContact =bSensorContact(pSamples[numS]);
 	}
 }
 
@@ -352,7 +352,7 @@ void turnOffPressureReg()
 //this is the method to run the PID, question is where to put this?
 //takes in a sample number as a parameter
 void runPID(int16_t sample) {
-	pSamples[sample]->bCurrentSensorContact = pSamples[sample]->bNextSensorContact;
+	//pSamples[sample]->bCurrentSensorContact = pSamples[sample]->bNextSensorContact;
 	pSamples[sample]->measuredForce = getLoadCell(sample);
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	printf("This is the load cell measurement: %f lbs.\n", pSamples[sample]->measuredForce);
@@ -756,8 +756,9 @@ void getTimersPrintStates() {
 
 //we have made sensor contact so time to set params, rotate if need be, and run the PID
 void analyzeContact(int16_t sample) {
-	pSamples[sample]->bNextSensorContact = bSubStateMachine(pSamples[sample]);
+	pSamples[sample]->bNextSensorContact =bSensorContact(pSamples[sample]);
 //KAS- dont' know if we need both sensorcontact variables. should be able to use substate for current
+	//RS-It checks to see if it is changing state so that it knows to open with a delay or not/close valve or to just use the previous command to that valve
 	if(pSamples[sample]->bNextSensorContact != pSamples[sample]->bCurrentSensorContact)
 	{
 		if(pParam->bTurnFlag)
@@ -777,7 +778,13 @@ void analyzeContact(int16_t sample) {
 	}
 //KAS- pid should run when foot is in contact only
 	//update force sensing with PID, and feed to pressure regulator
-	runPID(sample);
+	
+	if(pSamples[sample]->bCurrentSensorContact)
+	{
+		runPID(sample);
+	}
+	
+	pSamples[sample]->bCurrentSensorContact = pSamples[sample]->bNextSensorContact;
 }
 
 void delay(int milliseconds)
