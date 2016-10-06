@@ -445,12 +445,15 @@ void runTest(text_responses *text_obj) {
 					if(nextState == downStep) {
 						initTest();
 						closeValve(verticalValve);
-					} else if(nextState == init) {
+					} 
+					else if(nextState == init) {
 						printf("Restarting test\n");
 						sleep(3);
-					} else if (nextState == reset || nextState == quit) {
+					} 
+					else if (nextState == reset || nextState == quit) {
 						configPauseReset();
-					} else {
+					} 
+					else {
 						printf("Invalid state change\n");
 					}
 				}

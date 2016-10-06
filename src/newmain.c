@@ -279,9 +279,12 @@ void openValve(int16_t valveDefine)
 	{
 	case verticalValve:
 		pin_high(HEADER_P8,SOL_VALVE_1); //excite valve 1
-		pin_high(HEADER_P8,SOL_VALVE_3); //excite valve 3
 		pin_low(HEADER_P8,SOL_VALVE_2); //unexcite valve 2
-		pin_low(HEADER_P8,SOL_VALVE_4); //unexcite valve 4
+		if(pParam->numSAMPLE + 1 == MAX_SAMPLE)
+		{
+			pin_high(HEADER_P8,SOL_VALVE_3); //excite valve 3
+			pin_low(HEADER_P8,SOL_VALVE_4); //unexcite valve 4
+		}		
 		break;
 	case turnValve_A:
 		pin_low(HEADER_P8,SOL_VALVE_5); //rotate valve 5
@@ -307,9 +310,12 @@ void closeValve(int16_t valveDefine)
 	{
 	case verticalValve:
 		pin_low(HEADER_P8,SOL_VALVE_1); //unexcite valve 1
-		pin_low(HEADER_P8,SOL_VALVE_3); //unexcite valve 3
 		pin_high(HEADER_P8,SOL_VALVE_2); //excite valve 2
-		pin_high(HEADER_P8,SOL_VALVE_4); //excite valve 4
+		if(pParam->numSAMPLE + 1 == MAX_SAMPLE)
+		{
+			pin_low(HEADER_P8,SOL_VALVE_3); //unexcite valve 3
+			pin_high(HEADER_P8,SOL_VALVE_4); //excite valve 4
+		}
 		break;
 	case turnValve_A:
 		pin_high(HEADER_P8,SOL_VALVE_5); //rotate valve 5
