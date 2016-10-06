@@ -21,6 +21,7 @@
 
 #include "newmain.h"
 #include "CLI.c"
+#include "state.h"
 #include "state.c"
 #include "gui.h"
 
@@ -76,7 +77,7 @@ void initTest()
 	pParam->bDownFlag = false;
 	for(int16_t numS = sample_A; numS < MAX_SAMPLE; numS ++)
 	{
-		pSamples[numS]->bCurrentSensorContact =bSensorContact(pSamples[numS]);
+		pSamples[numS]->bCurrentSensorContact = bSensorContact(pSamples[numS]);
 	}
 }
 

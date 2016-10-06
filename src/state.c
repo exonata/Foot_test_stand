@@ -122,7 +122,7 @@ int16_t stateMachine(test_param_t *pParam_t)
  */
 //KAS- i would just call this a bool and not a statemachine and just have getFootContact since that's the only thing this is used for
 //RS - This is just changing the name of the function right?   I will change bSubStateMachine to bSensorContact
-bool SensorContact(data_t *pSample_t)
+bool bSensorContact(data_t *pSample_t)
 {
 	int16_t newSubState;
 
