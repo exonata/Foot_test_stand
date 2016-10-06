@@ -17,6 +17,6 @@ struct data_t;
 struct test_param_t;
 
 int16_t stateMachine(test_param_t *pParam_t);
-bool SensorContact(data_t *pSample_t);
+bool bSensorContact(data_t *pSample_t);
 
 #endif
