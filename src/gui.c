@@ -417,7 +417,7 @@ void UpDownStepValveConfig(int16_t currentState, int16_t nextState) {
  */
 void runTest(text_responses *text_obj) {
 	printf("got into run test \n");
-	while(paramu32("count", "Get", 0) =< paramu32("cycle", "Get", 0)) {
+	while(paramu32("count", "Get", 0) <= paramu32("cycle", "Get", 0)) {
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 		getTimersPrintStates();
 
@@ -489,10 +489,6 @@ void runTest(text_responses *text_obj) {
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 		//log data
 		logData();
-		if(paramu32("count", "Get", 0) == paramu32("cycle", "Get", 0))
-		{
-			
-		}
 		if(currentState == quit) {
 			//break; //break for the while loop
 		}
