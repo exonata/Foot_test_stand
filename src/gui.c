@@ -491,7 +491,7 @@ void runTest(text_responses *text_obj) {
 		logData();
 		if(paramu32("count", "Get", 0) == paramu32("cycle", "Get", 0))
 		{
-			configPauseReset();
+			
 		}
 		if(currentState == quit) {
 			//break; //break for the while loop
@@ -501,6 +501,7 @@ void runTest(text_responses *text_obj) {
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 
 	}
+	configPauseReset();
 	turnOffPressureReg(); //turn off pressure regulator at end of test
 	freeEverything();
 
