@@ -234,17 +234,17 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 {
 	printf("got into foot val\n");
 	float resistance;
-	uint16_t sample;
+	float sample;
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 	if (sampleNum == sample_A) {
 		if (toeHeel == toe) {
-			sample = int readADC(0);
+			sample =  readADC(0);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			printf("voltage measured: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
-			sample = int readADC(0);
+			sample = readADC(0);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			printf("voltage measured: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
