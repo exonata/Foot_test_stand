@@ -619,7 +619,7 @@ main (int    argc,
 	testRotaryValves()
 	PWMTest();
 	*/
-
+	iolib_free();
 	iolib_init(); 				//initiate GPIO library
 	initValve();   				//initiate valve pins
 	initADC();    				//set up ADCs
