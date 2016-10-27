@@ -42,12 +42,12 @@ float offSetLC1 = 17.3; //for the offsets
 float offSetLC2 = 20.6;
 
 //Initialize buffer for ADCs
-int16_t buffer_LOAD_CELL_1[BUFFER_SIZE] = {0};
-int16_t buffer_LOAD_CELL_2[BUFFER_SIZE] = {0};
-int16_t buffer_HEEL_1_ADC[BUFFER_SIZE] = {0};
-int16_t buffer_TOE_1_ADC[BUFFER_SIZE] = {0};
-int16_t buffer_HEEL_2_ADC[BUFFER_SIZE] = {0};
-int16_t buffer_TOE_2_ADC[BUFFER_SIZE] = {0};
+unsigned int buffer_LOAD_CELL_1[BUFFER_SIZE] = {0};
+unsigned int buffer_LOAD_CELL_2[BUFFER_SIZE] = {0};
+unsigned int buffer_HEEL_1_ADC[BUFFER_SIZE] = {0};
+unsigned int buffer_TOE_1_ADC[BUFFER_SIZE] = {0};
+unsigned int buffer_HEEL_2_ADC[BUFFER_SIZE] = {0};
+unsigned int buffer_TOE_2_ADC[BUFFER_SIZE] = {0};
 
 
 //Initialze file name buffers
@@ -238,13 +238,13 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 	if (sampleNum == sample_A) {
 		if (toeHeel == toe) {
-			sample = buffer_TOE_1_ADC[1];
+			sample = int readADC(0);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			printf("voltage measured: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
-			sample = buffer_HEEL_1_ADC[1];
+			sample = int readADC(0);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			printf("voltage measured: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
@@ -258,12 +258,14 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 	else if (sampleNum == sample_B) 
 	{
 		if (toeHeel == toe) {
-			sample = buffer_TOE_2_ADC[1];
+			//sample = buffer_TOE_2_ADC[1];
+			sample = readADC(1);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
-			sample = buffer_HEEL_2_ADC[1];
+			//sample = buffer_HEEL_2_ADC[1];
+			sample = readADC(1);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
@@ -827,6 +829,30 @@ void freeEverything() {
 
 	//exit(EXIT_SUCCESS);
 }
+
+//Function definitions  
+int readADC(unsigned int pin)  
+{  
+     int fd;          //file pointer  
+     char buf[MAX_BUF];     //file buffer  
+     char val[4];     //holds up to 4 digits for ADC value  
+     
+     //Create the file path by concatenating the ADC pin number to the end of the string  
+     //Stores the file path name string into "buf"  
+     snprintf(buf, sizeof(buf), "/sys/devices/ocp.3/helper.15/AIN%d", pin);     //Concatenate ADC file name
+     
+     fd = open(buf, O_RDONLY);     //open ADC as read only  
+     
+     //Will trigger if the ADC is not enabled  
+     if (fd < 0) {  
+          perror("ADC - problem opening ADC");  
+     }//end if  
+     
+     read(fd, &val, 4);     //read ADC ing val (up to 4 digits 0-1799)  
+     close(fd);     //close file and stop reading  
+     
+     return atoi(val);     //returns an integer value (rather than ascii)  
+}//end read ADC()
 
 
 
