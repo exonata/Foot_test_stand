@@ -124,7 +124,7 @@ int16_t stateMachine(test_param_t *pParam_t)
 //RS - This is just changing the name of the function right?   I will change bSubStateMachine to bSensorContact
 bool bSensorContact(data_t *pSample_t)
 {
-	int16_t newSubState;
+	bool newSubState;
 
 	if(pSample_t->baseForce < pSample_t->measuredForce)
 	{

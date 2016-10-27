@@ -42,12 +42,12 @@ float offSetLC1 = 17.3; //for the offsets
 float offSetLC2 = 20.6;
 
 //Initialize buffer for ADCs
-unsigned int buffer_LOAD_CELL_1[BUFFER_SIZE] = {0};
-unsigned int buffer_LOAD_CELL_2[BUFFER_SIZE] = {0};
-unsigned int buffer_HEEL_1_ADC[BUFFER_SIZE] = {0};
-unsigned int buffer_TOE_1_ADC[BUFFER_SIZE] = {0};
-unsigned int buffer_HEEL_2_ADC[BUFFER_SIZE] = {0};
-unsigned int buffer_TOE_2_ADC[BUFFER_SIZE] = {0};
+int16_t buffer_LOAD_CELL_1[BUFFER_SIZE] = {0};
+int16_t buffer_LOAD_CELL_2[BUFFER_SIZE] = {0};
+int16_t buffer_HEEL_1_ADC[BUFFER_SIZE] = {0};
+int16_t buffer_TOE_1_ADC[BUFFER_SIZE] = {0};
+int16_t buffer_HEEL_2_ADC[BUFFER_SIZE] = {0};
+int16_t buffer_TOE_2_ADC[BUFFER_SIZE] = {0};
 
 
 //Initialze file name buffers
@@ -250,7 +250,13 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		}
-	} else if (sampleNum == sample_B) {
+		else
+		{
+			printf("Error: toe or heel val not requested\n");
+		}
+	} 
+	else if (sampleNum == sample_B) 
+	{
 		if (toeHeel == toe) {
 			sample = buffer_TOE_2_ADC[1];
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
@@ -262,6 +268,14 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		}
+		else
+		{
+			printf("Error: toe or heel val not requested\n");
+		}
+	}
+	else
+	{
+		printf("Error: Sample A or B not requested\n");
 	}
 	return(resistance);
 }
