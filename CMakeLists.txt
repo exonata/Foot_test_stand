@@ -33,3 +33,15 @@ rt
  ${GTK3_LIBRARIES}
  ${CMAKE_THREAD_LIBS_INIT}
  )
+ 
+ add_executable(ADC src/ADC_Example.c)
+target_link_libraries(ADC
+${GTK3_INCLUDE_DIR}
+rt
+ BBBio
+ foot_stand
+ ${GLIB_LIBRARIES}
+ ${GTK3_LINK_DIR}
+ ${GTK3_LIBRARIES}
+ ${CMAKE_THREAD_LIBS_INIT}
+ )
