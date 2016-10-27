@@ -59,7 +59,7 @@
 
 /**define Buffer size for ADC*/
 #define BUFFER_SIZE 100
-#define SAMPLE_SIZE 1
+#define SAMPLE_SIZE 10
 
 /**PWM defines*/
 #define PWM_HZ 500
@@ -185,6 +185,7 @@ void analyzeContact(int16_t sample);
 void freeEverything();
 void runPID(int16_t sample);
 void delay(int milliseconds);
+int readADC(unsigned int pin);
 
 
 #endif
