@@ -520,15 +520,17 @@ void testADC() {
 		BBBIO_ADC_STEP_AVG_1, buffer_AIN_0, BUFFER_SIZE);
 
 	BBBIO_ADCTSC_channel_ctrl(BBBIO_ADC_AIN1, BBBIO_ADC_STEP_MODE_SW_CONTINUOUS, open_dly, sample_dly, \
-		BBBIO_ADC_STEP_AVG_1, buffer_AIN_1, BUFFER_SIZE);
+	BBBIO_ADC_STEP_AVG_1, buffer_AIN_1, BUFFER_SIZE);
 	BBBIO_ADCTSC_channel_enable(BBBIO_ADC_AIN0);
 	BBBIO_ADCTSC_channel_enable(BBBIO_ADC_AIN1);
+	
+	
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 	sample1 = buffer_AIN_0[0];
 	sample2 = buffer_AIN_1[0];
 	printf("\t[sample : %d , %f v]\n", sample1, ((float)sample1 / 4095.0f) * 1.8f);
 	printf("\t[sample : %d , %f v]\n", sample2, ((float)sample2 / 4095.0f) * 1.8f);
-
+	sleep(1);
 	printf("Now set valve 1 and 3 high and leave 2 and 4 low\n");
 	pin_low(HEADER_P8,SOL_VALVE_1);
 	pin_low(HEADER_P8,SOL_VALVE_2);
@@ -536,18 +538,19 @@ void testADC() {
 	pin_low(HEADER_P8,SOL_VALVE_4);
 	pin_high(HEADER_P8,SOL_VALVE_1);
 	pin_high(HEADER_P8,SOL_VALVE_3);
-	
+	sleep(2);
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 		sample1 = buffer_AIN_0[0];
 		sample2 = buffer_AIN_1[0];
 		printf("\t[sample : %d , %f v]\n", sample1, ((float)sample1 / 4095.0f) * 1.8f);
 		printf("\t[sample : %d , %f v]\n", sample2, ((float)sample2 / 4095.0f) * 1.8f);
-	
+	sleep(2);
 	printf("Now set valve 1 and 3 low and set 2 and 4 high\n");
 	pin_low(HEADER_P8,SOL_VALVE_1);
 	pin_low(HEADER_P8,SOL_VALVE_3);
 	pin_high(HEADER_P8,SOL_VALVE_2);
 	pin_high(HEADER_P8,SOL_VALVE_4);
+	sleep(2);
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 	sample1 = buffer_AIN_0[0];
 	sample2 = buffer_AIN_1[0];
