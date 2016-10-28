@@ -196,12 +196,13 @@ void *doSomeThing(void *arg)
     	signal(SIGALRM, SIG_IGN);
     	//alarm(100000);
 		//printf("Going into while loop\n");
-		runTest();
+		//runTest();
+    	testADC();
 		signal(SIGALRM, SIG_IGN);
     }
     signal(SIGALRM, SIG_IGN);
 	printf("TEST COMPLETE!\n");
-
+	freeEverything();
 	startTest = 0; //reset start test to zero
     return NULL;
 }
@@ -619,7 +620,7 @@ main (int    argc,
 	testRotaryValves()
 	PWMTest();
 	*/
-	iolib_free();
+	//iolib_free();
 	iolib_init(); 				//initiate GPIO library
 	initValve();   				//initiate valve pins
 	initADC();    				//set up ADCs
