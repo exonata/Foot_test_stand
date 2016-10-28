@@ -177,7 +177,7 @@ float getLoadCell(int16_t sampleNum)
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
 	float force;
-	float sample;
+	unsigned int sample;
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 	if (sampleNum == sample_A) {
 		//sample = buffer_LOAD_CELL_1[1];
@@ -236,7 +236,7 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 {
 	printf("got into foot val\n");
 	float resistance;
-	float sample;
+	unsigned int sample;
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 	if (sampleNum == sample_A) {
 		if (toeHeel == toe) {
@@ -771,12 +771,12 @@ void getTimersPrintStates() {
 	int16_t next =  stateMachine(pParam);
 	pParam->nextState = next;
 	//pParam->bCommandFlag = false;
-	printf("Count: %d         			Current State: %s \n"
+	/*printf("Count: %d         			Current State: %s \n"
 			"Next State: %s    Elapsed Time: %lld\n"
 			"Command flag: %d\n"
 			"--------------------------------------\n",
 			pParam->count,  getStateEnum(pParam->currentState),
-			getStateEnum(pParam->nextState), pParam->elapsedTime_ms, pParam->bCommandFlag);
+			getStateEnum(pParam->nextState), pParam->elapsedTime_ms, pParam->bCommandFlag); */
 }
 
 //we have made sensor contact so time to set params, rotate if need be, and run the PID
