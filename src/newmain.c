@@ -828,7 +828,7 @@ void freeEverything() {
 	iolib_free();
 	pParam->currentState = init;
 	pParam->nextState = downStep;
-	printf("free everything \n")
+	printf("free everything \n");
 	//exit(EXIT_SUCCESS);
 }
 
