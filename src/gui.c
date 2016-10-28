@@ -196,9 +196,9 @@ void *doSomeThing(void *arg)
     	signal(SIGALRM, SIG_IGN);
     	//alarm(100000);
 		//printf("Going into while loop\n");
-		//runTest();
+		runTest();
     	//testVerticalValves();
-    	testADC();
+    	//testADC();
 		signal(SIGALRM, SIG_IGN);
     }
     signal(SIGALRM, SIG_IGN);
