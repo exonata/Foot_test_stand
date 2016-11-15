@@ -302,7 +302,7 @@ int BBBIO_PWMSS_Setting(unsigned int PWMID , float HZ ,float dutyA ,float dutyB)
 						 * and max TBPRD is 65535 , so , the max cycle is 128*14* 65535 *10ns
 						 */
 #ifdef BBBIO_LIB_DBG
-	printf("Cyclens %f , Divisor %f\n", Cyclens, Divisor);
+	//printf("Cyclens %f , Divisor %f\n", Cyclens, Divisor);
 #endif
 
 	if(Divisor > (128 * 14)) {
@@ -323,12 +323,12 @@ int BBBIO_PWMSS_Setting(unsigned int PWMID , float HZ ,float dutyA ,float dutyB)
 			}
 		}
 #ifdef BBBIO_LIB_DBG
-		printf("nearest CLKDIV %f , HSPCLKDIV %f\n" ,CLKDIV_div[NearCLKDIV] ,HSPCLKDIV_div[NearHSPCLKDIV]);
+		//printf("nearest CLKDIV %f , HSPCLKDIV %f\n" ,CLKDIV_div[NearCLKDIV] ,HSPCLKDIV_div[NearHSPCLKDIV]);
 #endif
 		NearTBPRD = (Cyclens / (10.0 *CLKDIV_div[NearCLKDIV] *HSPCLKDIV_div[NearHSPCLKDIV])) ;
 
 #ifdef BBBIO_LIB_DBG
-		printf("nearest TBPRD %d, %f %f\n ",NearTBPRD,NearTBPRD * dutyA, NearTBPRD * dutyB);
+		//printf("nearest TBPRD %d, %f %f\n ",NearTBPRD,NearTBPRD * dutyA, NearTBPRD * dutyB);
 #endif
 
 		/* setting clock diver and freeze time base */

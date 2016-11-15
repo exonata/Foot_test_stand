@@ -197,8 +197,6 @@ void *doSomeThing(void *arg)
     	//alarm(100000);
 		//printf("Going into while loop\n");
 		runTest();
-    	//testVerticalValves();
-    	//testADC();
 		signal(SIGALRM, SIG_IGN);
     }
     signal(SIGALRM, SIG_IGN);
@@ -434,7 +432,14 @@ void runTest(text_responses *text_obj) {
 		//printf("I made it here before switch!\n");
 		switch(currentState) {
 			case init:
+				
+				iolib_init(); 				//initiate GPIO library
+				initValve();   				//initiate valve pins
+				initADC();    				//set up ADCs
+				enableLoadCellADC(); 	 	//enable load cell pins
+				enableFootADC(); 
 				initTest();
+				
 				break;
 			case downStep:
 				UpDownStepValveConfig(currentState, nextState);
@@ -658,7 +663,6 @@ main (int    argc,
 	testRotaryValves()
 	PWMTest();
 	*/
-	//iolib_free();
 	iolib_init(); 				//initiate GPIO library
 	initValve();   				//initiate valve pins
 	initADC();    				//set up ADCs

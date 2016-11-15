@@ -188,7 +188,7 @@ float getLoadCell(int16_t sampleNum)
 		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
 		signal(SIGALRM, SIG_IGN);
-		printf("Measurement LC1 is %d, %f\n", sample, force);
+		//printf("Measurement LC1 is %d, %f\n", sample, force);
 	} else if (sampleNum == sample_B) {
 		sample = buffer_LOAD_CELL_2[0];
 		//sample =  readADC(LOAD_CELL_2);
@@ -196,7 +196,7 @@ float getLoadCell(int16_t sampleNum)
 		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
 		signal(SIGALRM, SIG_IGN);
-		printf("Measurement LC2 is %d, %f\n", sample, force);
+		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
 
 	return(force);
@@ -595,7 +595,7 @@ void initCLI(text_responses *text_obj) {
 		outfile[sample] = fopen(filename_1, "w");
 		strcpy(pSamples[sample]->fileName, filename_1);
 		printf("Saving sample #%d data to file: ", sample+1);
-		printf("got hereeee\n");
+		//printf("got hereeee\n");
 		printf(filename_1);
 		printf("\n");
 	}
