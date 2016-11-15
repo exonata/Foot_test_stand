@@ -181,8 +181,11 @@ int updateVals(int8_t sample)
 	alarm(10000000);
 	
 	pSamples[sample]->measuredForce = getLoadCell(sample);
+	signal(SIGALRM, SIG_IGN);
 	pSamples[sample]->toeVal =  getFootVal(sample, toe);
+	signal(SIGALRM, SIG_IGN);
 	pSamples[sample]->heelVal =  getFootVal(sample, heel);
+	signal(SIGALRM, SIG_IGN);
 	
 }
 
