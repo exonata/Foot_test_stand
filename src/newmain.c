@@ -459,8 +459,8 @@ void logData()
 				{
 					if(!pSamples[sample]->bLogCreated)
 					{ 
-						printf("In outfile segment1");
-						//fprintf(outfile[sample],
+						//printf("In outfile segment1");
+						fprintf(outfile[sample],
 							"Serial_number: %d \n"
 							"Time "
 							"Data_Count "
