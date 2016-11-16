@@ -48,6 +48,7 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/ADC.dir/DependInfo.cmake"
   "CMakeFiles/foot_stand.dir/DependInfo.cmake"
   "CMakeFiles/main_app.dir/DependInfo.cmake"
   )

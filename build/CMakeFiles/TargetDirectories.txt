@@ -1,2 +1,3 @@
+/root/foot_test_stand/build/CMakeFiles/ADC.dir
 /root/foot_test_stand/build/CMakeFiles/foot_stand.dir
 /root/foot_test_stand/build/CMakeFiles/main_app.dir

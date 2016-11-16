@@ -99,6 +99,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named ADC
+
+# Build rule for target.
+ADC: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ADC
+.PHONY : ADC
+
+# fast build rule for target.
+ADC/fast:
+	$(MAKE) -f CMakeFiles/ADC.dir/build.make CMakeFiles/ADC.dir/build
+.PHONY : ADC/fast
+
+#=============================================================================
 # Target rules for targets named foot_stand
 
 # Build rule for target.
@@ -123,6 +136,30 @@ main_app: cmake_check_build_system
 main_app/fast:
 	$(MAKE) -f CMakeFiles/main_app.dir/build.make CMakeFiles/main_app.dir/build
 .PHONY : main_app/fast
+
+src/ADC_Example.o: src/ADC_Example.c.o
+.PHONY : src/ADC_Example.o
+
+# target to build an object file
+src/ADC_Example.c.o:
+	$(MAKE) -f CMakeFiles/ADC.dir/build.make CMakeFiles/ADC.dir/src/ADC_Example.c.o
+.PHONY : src/ADC_Example.c.o
+
+src/ADC_Example.i: src/ADC_Example.c.i
+.PHONY : src/ADC_Example.i
+
+# target to preprocess a source file
+src/ADC_Example.c.i:
+	$(MAKE) -f CMakeFiles/ADC.dir/build.make CMakeFiles/ADC.dir/src/ADC_Example.c.i
+.PHONY : src/ADC_Example.c.i
+
+src/ADC_Example.s: src/ADC_Example.c.s
+.PHONY : src/ADC_Example.s
+
+# target to generate assembly for a file
+src/ADC_Example.c.s:
+	$(MAKE) -f CMakeFiles/ADC.dir/build.make CMakeFiles/ADC.dir/src/ADC_Example.c.s
+.PHONY : src/ADC_Example.c.s
 
 src/CLI.o: src/CLI.c.o
 .PHONY : src/CLI.o
@@ -205,10 +242,14 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... ADC"
 	@echo "... edit_cache"
 	@echo "... foot_stand"
 	@echo "... main_app"
 	@echo "... rebuild_cache"
+	@echo "... src/ADC_Example.o"
+	@echo "... src/ADC_Example.i"
+	@echo "... src/ADC_Example.s"
 	@echo "... src/CLI.o"
 	@echo "... src/CLI.i"
 	@echo "... src/CLI.s"
