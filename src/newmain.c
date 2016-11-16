@@ -180,7 +180,7 @@ int updateVals(int8_t sample)
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
 	
-	pSamples[sample]->measuredForce = getLoadCell(sample);
+	//pSamples[sample]->measuredForce = getLoadCell(sample);
 	pSamples[sample]->toeVal =  getFootVal(sample, toe);
 	pSamples[sample]->heelVal =  getFootVal(sample, heel);
 	signal(SIGALRM, SIG_IGN);
@@ -460,7 +460,7 @@ void logData()
 					if(!pSamples[sample]->bLogCreated)
 					{ 
 						printf("In outfile segment1");
-						fprintf(outfile[sample],
+						//fprintf(outfile[sample],
 							"Serial_number: %d \n"
 							"Time "
 							"Data_Count "
@@ -476,8 +476,8 @@ void logData()
 					
 		//
 					
-				//updateVals(sample);	
-				printf("In outfile segment");
+				updateVals(sample);	
+				//printf("In outfile segment");
 				fprintf(outfile[sample],
 					"%lld "
 					"%d "

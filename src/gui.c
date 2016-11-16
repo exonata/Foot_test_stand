@@ -494,6 +494,7 @@ void runTest(text_responses *text_obj) {
 			paramBool("bUpFlag", "Set", false);
 		}
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
+		
 		//log data
 		logData();
 		if(currentState == quit) {
