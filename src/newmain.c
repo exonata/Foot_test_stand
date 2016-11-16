@@ -210,7 +210,7 @@ float getLoadCell(int16_t sampleNum)
 		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
 		signal(SIGALRM, SIG_IGN);
-		printf("Measurement LC1 is %d, %f\n", sample, force);
+		//printf("Measurement LC1 is %d, %f\n", sample, force);
 	} else if (sampleNum == sample_B) {
 		sample = buffer_LOAD_CELL_2[0];
 		//sample =  readADC(LOAD_CELL_2);
@@ -218,7 +218,7 @@ float getLoadCell(int16_t sampleNum)
 		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
 		signal(SIGALRM, SIG_IGN);
-		printf("Measurement LC2 is %d, %f\n", sample, force);
+		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
 
 	return(force);
@@ -267,14 +267,14 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			sample = buffer_TOE_1_ADC[0];
 			//sample =  readADC(TOE_1_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			printf("voltage measured toe 1: %f\n", voltageMeasured);
+			//printf("voltage measured toe 1: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
 			sample = buffer_HEEL_1_ADC[0];
 			//sample = readADC(HEEL_1_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			printf("voltage measured heel 1: %f\n", voltageMeasured);
+			//printf("voltage measured heel 1: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		}
@@ -289,14 +289,14 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			sample = buffer_TOE_2_ADC[0];
 			//sample = readADC(TOE_2_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			printf("voltage measured toe 2: %f\n", voltageMeasured);
+			//printf("voltage measured toe 2: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
 			sample = buffer_HEEL_2_ADC[0];
 			//sample = readADC(HEEL_2_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			printf("voltage measured heel 1: %f\n", voltageMeasured);
+			//printf("voltage measured heel 1: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		}
@@ -409,7 +409,7 @@ void runPID(int16_t sample) {
 	//pSamples[sample]->bCurrentSensorContact = pSamples[sample]->bNextSensorContact;
 	pSamples[sample]->measuredForce = getLoadCell(sample);
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
-	printf("This is the load cell measurement: %f lbs.\n", pSamples[sample]->measuredForce);
+	//printf("This is the load cell measurement: %f lbs.\n", pSamples[sample]->measuredForce);
 	float error = pParam->desiredForce - pSamples[sample]->measuredForce;
 	float psiVal = UpdatePID(pid, error, pSamples[sample]->measuredForce);
 	setDesForce(psiVal);
