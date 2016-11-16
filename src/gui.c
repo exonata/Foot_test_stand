@@ -664,11 +664,11 @@ main (int    argc,
 	testRotaryValves()
 	PWMTest();
 	*/
-	iolib_init(); 				//initiate GPIO library
-	initValve();   				//initiate valve pins
-	initADC();    				//set up ADCs
-	enableLoadCellADC(); 	 	//enable load cell pins
-	enableFootADC();  			//enable foot adc pins
+	//iolib_init(); 				//initiate GPIO library
+	//initValve();   				//initiate valve pins
+	//initADC();    				//set up ADCs
+	//enableLoadCellADC(); 	 	//enable load cell pins
+	//enableFootADC();  			//enable foot adc pins
 	//run GUI
 	GtkApplication *app;
 	int status;
