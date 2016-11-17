@@ -420,7 +420,7 @@ void runTest(text_responses *text_obj) {
 	while(paramu32("count", "Get", 0) <= paramu32("cycle", "Get", 0)) {
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 		getTimersPrintStates();
-
+		updateVals();
 		int16_t currentState = param16("currentState", "Get", 0);
 		int16_t nextState = param16("nextState", "Get", 0);
 		if (currentState == reset) {
@@ -464,9 +464,12 @@ void runTest(text_responses *text_obj) {
 					}
 				}
 				break;
+				
 			case reset:
 				break;
+				
 			case quit:
+				break;
 				
 			default:
 				break;
@@ -495,16 +498,11 @@ void runTest(text_responses *text_obj) {
 		//log data
 		logData();
 		if(currentState == quit) {
-			//break; //break for the while loop
+			break; //break for the while loop
 		}
 		//set current state to next state
 		param16("currentState", "Set", param16("nextState", "Get", 0));
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
-
-	
-	
-	
-	
 	}
 	configPauseReset();
 	turnOffPressureReg(); //turn off pressure regulator at end of test

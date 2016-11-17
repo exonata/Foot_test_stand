@@ -480,7 +480,6 @@ void logData()
 					
 		//
 					
-				updateVals(sample);	
 				printf("In outfile segment1\n");
 				fprintf(outfile[sample],
 					"%lld "
@@ -816,12 +815,12 @@ void getTimersPrintStates() {
 	int16_t next =  stateMachine(pParam);
 	pParam->nextState = next;
 	//pParam->bCommandFlag = false;
-	/*printf("Count: %d         			Current State: %s \n"
+	printf("Count: %d         			Current State: %s \n"
 			"Next State: %s    Elapsed Time: %lld\n"
 			"Command flag: %d\n"
 			"--------------------------------------\n",
 			pParam->count,  getStateEnum(pParam->currentState),
-			getStateEnum(pParam->nextState), pParam->elapsedTime_ms, pParam->bCommandFlag); */
+			getStateEnum(pParam->nextState), pParam->elapsedTime_ms, pParam->bCommandFlag); 
 }
 
 //we have made sensor contact so time to set params, rotate if need be, and run the PID
