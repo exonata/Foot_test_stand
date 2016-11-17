@@ -432,7 +432,6 @@ void runTest(text_responses *text_obj) {
 		//printf("I made it here before switch!\n");
 		switch(currentState) {
 			case init:
-				
 				iolib_init(); 				//initiate GPIO library
 				initValve();   				//initiate valve pins
 				initADC();    				//set up ADCs
@@ -664,7 +663,7 @@ main (int    argc,
 	testRotaryValves()
 	PWMTest();
 	*/
-	//iolib_init(); 				//initiate GPIO library
+	iolib_init(); 				//initiate GPIO library
 	//initValve();   				//initiate valve pins
 	//initADC();    				//set up ADCs
 	//enableLoadCellADC(); 	 	//enable load cell pins
