@@ -466,11 +466,7 @@ void runTest(text_responses *text_obj) {
 			case reset:
 				break;
 			case quit:
-				for(int16_t numS = sample_A; numS < MAX_SAMPLE; numS++) {
-					
-					
-					printf("here fclose done");
-				}
+				
 			default:
 				break;
 
