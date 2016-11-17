@@ -496,6 +496,23 @@ void logData()
 					pSamples[sample]->measuredForce,
 					pSamples[sample]->toeVal,
 					pSamples[sample]->heelVal);
+				
+				printf(			"%lld "
+									"%d "
+									"%d "
+									"%d "
+									"%.3f "
+									"%.3f "
+									"%.2f "
+									"%.2f\n",
+									pParam->currentTime_ms,
+									pSamples[sample]->dataCount ,
+									pParam->count,
+									pParam->currentState,
+									pSamples[sample]->desiredForce,
+									pSamples[sample]->measuredForce,
+									pSamples[sample]->toeVal,
+									pSamples[sample]->heelVal);
 
 				pSamples[sample]->dataCount += 1;
 			}
