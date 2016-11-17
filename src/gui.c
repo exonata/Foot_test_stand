@@ -438,11 +438,15 @@ void runTest(text_responses *text_obj) {
 				enableLoadCellADC(); 	 	//enable load cell pins
 				enableFootADC(); 
 				initTest();
-				
+				printf("init/n");
 				break;
+				
+			case downStep:
+				printf("down step/n");				
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case upStep:
+				printf("up step/n");	
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case hold:
