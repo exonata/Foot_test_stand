@@ -440,7 +440,6 @@ void runTest(text_responses *text_obj) {
 				initTest();
 				
 				break;
-			case downStep:
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case upStep:

@@ -877,7 +877,10 @@ void delay(int milliseconds)
 
 //free the ios, and reset back for next test
 void freeEverything() {
-	fclose(outfile[numS]);
+	for(int16_t numS = sample_A; numS < MAX_SAMPLE; numS++) 
+	{
+		fclose(outfile[numS]);
+	}
 	iolib_free();
 	pParam->currentState = init;
 	pParam->nextState = downStep;
