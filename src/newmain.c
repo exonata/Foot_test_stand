@@ -268,14 +268,14 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			sample = buffer_TOE_1_ADC[0];
 			//sample =  readADC(TOE_1_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured toe 1: %f\n", voltageMeasured);
+			printf("voltage measured toe 1: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
 			sample = buffer_HEEL_1_ADC[0];
 			//sample = readADC(HEEL_1_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured heel 1: %f\n", voltageMeasured);
+			printf("voltage measured heel 1: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		}
@@ -290,14 +290,14 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			sample = buffer_TOE_2_ADC[0];
 			//sample = readADC(TOE_2_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured toe 2: %f\n", voltageMeasured);
+			printf("voltage measured toe 2: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
 			sample = buffer_HEEL_2_ADC[0];
 			//sample = readADC(HEEL_2_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured heel 1: %f\n", voltageMeasured);
+			printf("voltage measured heel 1: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		}
@@ -838,12 +838,12 @@ void analyzeContact(int16_t sample) {
 	}
 //KAS- pid should run when foot is in contact only
 	//update force sensing with PID, and feed to pressure regulator
-	
+	/*
 	if(pSamples[sample]->bCurrentSensorContact)
 	{
 		runPID(sample);
 	}
-	
+	*/
 	pSamples[sample]->bCurrentSensorContact = pSamples[sample]->bNextSensorContact;
 }
 
