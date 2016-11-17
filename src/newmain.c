@@ -177,6 +177,7 @@ const char * getStateEnum(int16_t state)
 
 int updateVals()
 {
+	printf("update ADC\n");
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
@@ -561,9 +562,11 @@ void cleanTest(text_responses *text_obj) {
 	updateVals();
 	
 	offSetLC1 = (ADC_MAX_V * pSamples[sample_A]->measuredForce) / RESOLUTION_ADC;
+	printf("Sample 1 load cell offset: %f\n", offsetLC1);
 	if (pParam->numSAMPLE == MAX_SAMPLE)
 	{
 		offSetLC2 = (ADC_MAX_V * pSamples[sample_B]->measuredForce) / RESOLUTION_ADC;
+		printf("Sample 2 load cell offset: %f\n", offsetLC2);
 	}
 }
 
@@ -815,12 +818,12 @@ void getTimersPrintStates() {
 	int16_t next =  stateMachine(pParam);
 	pParam->nextState = next;
 	//pParam->bCommandFlag = false;
-	printf("Count: %d         			Current State: %s \n"
+	/*printf("Count: %d         			Current State: %s \n"
 			"Next State: %s    Elapsed Time: %lld\n"
 			"Command flag: %d\n"
 			"--------------------------------------\n",
 			pParam->count,  getStateEnum(pParam->currentState),
-			getStateEnum(pParam->nextState), pParam->elapsedTime_ms, pParam->bCommandFlag); 
+			getStateEnum(pParam->nextState), pParam->elapsedTime_ms, pParam->bCommandFlag); */
 }
 
 //we have made sensor contact so time to set params, rotate if need be, and run the PID
