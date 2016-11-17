@@ -503,6 +503,10 @@ void runTest(text_responses *text_obj) {
 		param16("currentState", "Set", param16("nextState", "Get", 0));
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 
+	
+	
+	
+	
 	}
 	configPauseReset();
 	turnOffPressureReg(); //turn off pressure regulator at end of test
