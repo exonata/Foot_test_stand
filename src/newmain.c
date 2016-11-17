@@ -175,16 +175,20 @@ const char * getStateEnum(int16_t state)
  * @return return float of load cell raw value.
  */
 
-int updateVals(int8_t sample)
+int updateVals()
 {
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
-	signal(SIGALRM, SIG_IGN);
-	pSamples[sample]->measuredForce = getLoadCell(sample);
-	signal(SIGALRM, SIG_IGN);
-	pSamples[sample]->toeVal =  getFootVal(sample, toe);
-	pSamples[sample]->heelVal =  getFootVal(sample, heel);
+	for(int16_t sample = sample_A; sample < MAX_SAMPLE; sample++) {
+	
+		signal(SIGALRM, SIG_IGN);
+		pSamples[sample]->measuredForce = getLoadCell(sample);
+		signal(SIGALRM, SIG_IGN);
+		pSamples[sample]->toeVal =  getFootVal(sample, toe);
+		pSamples[sample]->heelVal =  getFootVal(sample, heel);
+		}
+	
 	signal(SIGALRM, SIG_IGN);
 	
 	return 1;
@@ -259,7 +263,7 @@ double UpdatePID(SPid * pid, double error, double position) {
  */
 float getFootVal(int16_t sampleNum, int toeHeel)
 {
-	printf("got into foot val\n");
+	//printf("got into foot val\n");
 	float resistance;
 	unsigned int sample;
 		if (sampleNum == sample_A) {
@@ -407,7 +411,7 @@ void turnOffPressureReg()
 void runPID(int16_t sample) {
 	printf("in pid loop\n");
 	//pSamples[sample]->bCurrentSensorContact = pSamples[sample]->bNextSensorContact;
-	pSamples[sample]->measuredForce = getLoadCell(sample);
+	//pSamples[sample]->measuredForce = getLoadCell(sample);
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	//printf("This is the load cell measurement: %f lbs.\n", pSamples[sample]->measuredForce);
 	float error = pParam->desiredForce - pSamples[sample]->measuredForce;
@@ -459,7 +463,7 @@ void logData()
 				{
 					if(!pSamples[sample]->bLogCreated)
 					{ 
-						printf("In outfile segment1\n");
+
 						fprintf(outfile[sample],
 							"Serial_number: %d \n"
 							"Time "
@@ -477,6 +481,7 @@ void logData()
 		//
 					
 				updateVals(sample);	
+				printf("In outfile segment1\n");
 				fprintf(outfile[sample],
 					"%lld "
 					"%d "
@@ -529,8 +534,10 @@ void cleanTest(text_responses *text_obj) {
 	}
 	float psiForce = pParam->desiredForce / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
 	setDesForce(psiForce);
+	updateVals();
 	for(int16_t sample = sample_A; sample < MAX_SAMPLE; sample++) {
-		pSamples[sample]->baseForce = getLoadCell(sample);
+
+		pSamples[sample]->baseForce = pSamples[sample]->measuredForce;
 	}
 
 	pParam->count = 0;
@@ -552,8 +559,13 @@ void cleanTest(text_responses *text_obj) {
 
 	//intialize offsets
 	//get offsets for load cells in volts
-	offSetLC1 = (ADC_MAX_V * getLoadCell(sample_A)) / RESOLUTION_ADC;
-	offSetLC2 = (ADC_MAX_V * getLoadCell(sample_B)) / RESOLUTION_ADC;
+	updateVals();
+	
+	offSetLC1 = (ADC_MAX_V * pSamples[sample_A]->measuredForce) / RESOLUTION_ADC;
+	if (pParam->numSAMPLE == MAX_SAMPLE)
+	{
+		offSetLC2 = (ADC_MAX_V * pSamples[sample_B]->measuredForce) / RESOLUTION_ADC;
+	}
 }
 
 //grab the data from the gui to input into our struct, also initializes the log
