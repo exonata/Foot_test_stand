@@ -562,11 +562,11 @@ void cleanTest(text_responses *text_obj) {
 	updateVals();
 	
 	offSetLC1 = (ADC_MAX_V * pSamples[sample_A]->measuredForce) / RESOLUTION_ADC;
-	printf("Sample 1 load cell offset: %f\n", offsetLC1);
+	printf("Sample 1 load cell offset: %f\n", offSetLC1);
 	if (pParam->numSAMPLE == MAX_SAMPLE)
 	{
 		offSetLC2 = (ADC_MAX_V * pSamples[sample_B]->measuredForce) / RESOLUTION_ADC;
-		printf("Sample 2 load cell offset: %f\n", offsetLC2);
+		printf("Sample 2 load cell offset: %f\n", offSetLC2);
 	}
 }
 
