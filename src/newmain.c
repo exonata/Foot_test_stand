@@ -179,7 +179,8 @@ int updateVals(int8_t sample)
 {
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
-	
+	BBBIO_ADCTSC_work(SAMPLE_SIZE);
+	signal(SIGALRM, SIG_IGN);
 	pSamples[sample]->measuredForce = getLoadCell(sample);
 	signal(SIGALRM, SIG_IGN);
 	pSamples[sample]->toeVal =  getFootVal(sample, toe);
@@ -203,7 +204,6 @@ float getLoadCell(int16_t sampleNum)
 	alarm(10000000);
 	float force;
 	unsigned int sample;
-	BBBIO_ADCTSC_work(SAMPLE_SIZE);
 	if (sampleNum == sample_A) {
 		sample = buffer_LOAD_CELL_1[0];
 		//sample =  readADC(LOAD_CELL_1);
@@ -262,8 +262,7 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 	printf("got into foot val\n");
 	float resistance;
 	unsigned int sample;
-	BBBIO_ADCTSC_work(SAMPLE_SIZE);
-	if (sampleNum == sample_A) {
+		if (sampleNum == sample_A) {
 		if (toeHeel == toe) {
 			sample = buffer_TOE_1_ADC[0];
 			//sample =  readADC(TOE_1_ADC);
