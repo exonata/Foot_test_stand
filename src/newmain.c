@@ -477,7 +477,7 @@ void logData()
 					
 		//
 					
-				//updateVals(sample);	
+				updateVals(sample);	
 				printf("In outfile segment\n");
 				fprintf(outfile[sample],
 					"%lld "
