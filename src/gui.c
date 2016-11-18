@@ -433,7 +433,7 @@ void runTest(text_responses *text_obj) {
 		//Based on states determine what to do
 		//printf("I made it here before switch!\n");
 		switch(currentState) {
-			case init:yu
+			case init:
 				printf("init \n");
 				iolib_init(); 				//initiate GPIO library
 				initValve();   				//initiate valve pins
