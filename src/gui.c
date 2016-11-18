@@ -392,6 +392,7 @@ void configPauseReset() {
 			openValve(turnValve_B); //if there are two samples, open both valves
 		}
 	}
+	printf("out of configPauseReset\n");
 }
 
 void UpDownStepValveConfig(int16_t currentState, int16_t nextState) {
@@ -410,6 +411,7 @@ void UpDownStepValveConfig(int16_t currentState, int16_t nextState) {
 			printf("Invalid state change\n");
 		}
 	}
+
 }
 
 /**

@@ -177,7 +177,7 @@ const char * getStateEnum(int16_t state)
 
 int updateVals()
 {
-	printf("update ADC\n");
+	//printf("update ADC\n");
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
 	BBBIO_ADCTSC_work(SAMPLE_SIZE);
@@ -405,6 +405,7 @@ void setDesForce(float force)
 void turnOffPressureReg()
 {
 	BBBIO_ehrPWM_Disable(BBBIO_PWMSS0);
+	printf("out of turn off pressure reg \n");
 }
 
 //this is the method to run the PID, question is where to put this?
@@ -481,7 +482,7 @@ void logData()
 					
 		//
 					
-				printf("In outfile segment1\n");
+				//printf("In outfile segment1\n");
 				fprintf(outfile[sample],
 					"%lld "
 					"%d "
@@ -872,6 +873,7 @@ void delay(int milliseconds)
 
 //free the ios, and reset back for next test
 void freeEverything() {
+	printf"Into free everything \n";
 	for(int16_t numS = sample_A; numS < MAX_SAMPLE; numS++) 
 	{
 		fclose(outfile[numS]);
