@@ -333,7 +333,7 @@ void openValve(int16_t valveDefine)
 		pin_high(HEADER_P8,SOL_VALVE_1); //excite valve 1
 		pin_low(HEADER_P8,SOL_VALVE_2); //unexcite valve 2
 		printf("numSample: %d, MAX_SAMPLE: %d \n", pParam->numSAMPLE, MAX_SAMPLE);
-		if(pParam->numSAMPLE + 1 == MAX_SAMPLE)
+		if(pParam->numSAMPLE == MAX_SAMPLE)
 		{
 			printf("sample b upstep \n");
 			pin_high(HEADER_P8,SOL_VALVE_3); //excite valve 3
@@ -365,7 +365,7 @@ void closeValve(int16_t valveDefine)
 	case verticalValve:
 		pin_low(HEADER_P8,SOL_VALVE_1); //unexcite valve 1
 		pin_high(HEADER_P8,SOL_VALVE_2); //excite valve 2
-		if(pParam->numSAMPLE + 1 == MAX_SAMPLE)
+		if(pParam->numSAMPLE == MAX_SAMPLE)
 		{
 			printf("sample b downstep \n");
 			pin_low(HEADER_P8,SOL_VALVE_3); //unexcite valve 3
@@ -567,7 +567,7 @@ void cleanTest(text_responses *text_obj) {
 	
 	offSetLC1 = (ADC_MAX_V * pSamples[sample_A]->measuredForce) / RESOLUTION_ADC;
 	printf("Sample 1 load cell offset: %f\n", offSetLC1);
-	if (pParam->numSAMPLE + 1 == MAX_SAMPLE)
+	if (pParam->numSAMPLE == MAX_SAMPLE)
 	{
 		offSetLC2 = (ADC_MAX_V * pSamples[sample_B]->measuredForce) / RESOLUTION_ADC;
 		printf("Sample 2 load cell offset: %f\n", offSetLC2);
