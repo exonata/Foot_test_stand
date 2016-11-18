@@ -27,7 +27,7 @@
 */
 
  //Function declarations  
- int readADC(unsigned int pin);  
+ //int readADC(unsigned int pin);  
  
 
  //main program  
@@ -36,7 +36,7 @@
 	 
 	 
 	 system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
-	 for(int b = 0; b < 10; b++)
+	 for(int b = 0; b < 10; b++) 
 	 {
 		 openValve(verticalValve);
 		 sleep(250);
@@ -114,7 +114,7 @@
       return 0;
  }//end main
 
-
+/*
  //Function definitions  
  int readADC(unsigned int pin)  
  {  
@@ -138,3 +138,4 @@
       
       return atoi(val);     //returns an integer value (rather than ascii)  
  }//end read ADC()
+*/
