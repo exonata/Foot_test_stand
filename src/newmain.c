@@ -874,7 +874,7 @@ void delay(int milliseconds)
 //free the ios, and reset back for next test
 void freeEverything() {
 	printf("Into free everything \n");
-	for(int16_t numS = sample_A; numS < MAX_SAMPLE; numS++) 
+	for(int16_t numS = sample_A; numS <pParam->numSAMPLE; numS++) 
 	{
 		fclose(outfile[numS]);
 	}
