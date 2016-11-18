@@ -20,7 +20,7 @@ BBBiolib_ADCTSC.h
 
 ../include/./BBBIOlib/BBBio_lib/BBBiolib_PWMSS.h
 
-/root/foot_test_stand/src/ADC_Example.c
+/root/Foot_test_stand/src/ADC_Example.c
 stdlib.h
 -
 stdio.h
@@ -34,5 +34,5 @@ fcntl.h
 math.h
 -
 ./BBBIOlib/BBBio_lib/BBBiolib.h
-/root/foot_test_stand/src/./BBBIOlib/BBBio_lib/BBBiolib.h
+/root/Foot_test_stand/src/./BBBIOlib/BBBio_lib/BBBiolib.h
 

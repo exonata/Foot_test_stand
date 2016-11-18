@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/foot_test_stand
+CMAKE_SOURCE_DIR = /root/Foot_test_stand
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/foot_test_stand/build
+CMAKE_BINARY_DIR = /root/Foot_test_stand/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ADC.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/ADC.dir/flags.make
 
 CMakeFiles/ADC.dir/src/ADC_Example.c.o: CMakeFiles/ADC.dir/flags.make
 CMakeFiles/ADC.dir/src/ADC_Example.c.o: ../src/ADC_Example.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/foot_test_stand/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/Foot_test_stand/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/ADC.dir/src/ADC_Example.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/ADC.dir/src/ADC_Example.c.o   -c /root/foot_test_stand/src/ADC_Example.c
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/ADC.dir/src/ADC_Example.c.o   -c /root/Foot_test_stand/src/ADC_Example.c
 
 CMakeFiles/ADC.dir/src/ADC_Example.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ADC.dir/src/ADC_Example.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /root/foot_test_stand/src/ADC_Example.c > CMakeFiles/ADC.dir/src/ADC_Example.c.i
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /root/Foot_test_stand/src/ADC_Example.c > CMakeFiles/ADC.dir/src/ADC_Example.c.i
 
 CMakeFiles/ADC.dir/src/ADC_Example.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ADC.dir/src/ADC_Example.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /root/foot_test_stand/src/ADC_Example.c -o CMakeFiles/ADC.dir/src/ADC_Example.c.s
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /root/Foot_test_stand/src/ADC_Example.c -o CMakeFiles/ADC.dir/src/ADC_Example.c.s
 
 CMakeFiles/ADC.dir/src/ADC_Example.c.o.requires:
 .PHONY : CMakeFiles/ADC.dir/src/ADC_Example.c.o.requires
@@ -98,6 +98,6 @@ CMakeFiles/ADC.dir/clean:
 .PHONY : CMakeFiles/ADC.dir/clean
 
 CMakeFiles/ADC.dir/depend:
-	cd /root/foot_test_stand/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/foot_test_stand /root/foot_test_stand /root/foot_test_stand/build /root/foot_test_stand/build /root/foot_test_stand/build/CMakeFiles/ADC.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/Foot_test_stand/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/Foot_test_stand /root/Foot_test_stand /root/Foot_test_stand/build /root/Foot_test_stand/build /root/Foot_test_stand/build/CMakeFiles/ADC.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ADC.dir/depend
 

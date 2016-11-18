@@ -79,6 +79,8 @@ fcntl.h
 -
 math.h
 -
+time.h
+-
 
 ../include/state.h
 stdio.h
@@ -102,7 +104,7 @@ newmain.h
 ./BBBIOlib/BBBio_lib/BBBiolib.h
 ../include/./BBBIOlib/BBBio_lib/BBBiolib.h
 
-/root/foot_test_stand/src/CLI.c
+/root/Foot_test_stand/src/CLI.c
 stdlib.h
 -
 stdio.h
@@ -112,31 +114,33 @@ string.h
 unistd.h
 -
 CLI.h
-/root/foot_test_stand/src/CLI.h
+/root/Foot_test_stand/src/CLI.h
 getopt.h
 -
 
-/root/foot_test_stand/src/gui.c
+/root/Foot_test_stand/src/gui.c
 newmain.h
-/root/foot_test_stand/src/newmain.h
+/root/Foot_test_stand/src/newmain.h
 gui.h
-/root/foot_test_stand/src/gui.h
+/root/Foot_test_stand/src/gui.h
 newmain.c
-/root/foot_test_stand/src/newmain.c
+/root/Foot_test_stand/src/newmain.c
 
-/root/foot_test_stand/src/newmain.c
+/root/Foot_test_stand/src/newmain.c
 newmain.h
-/root/foot_test_stand/src/newmain.h
+/root/Foot_test_stand/src/newmain.h
 CLI.c
-/root/foot_test_stand/src/CLI.c
-state.c
-/root/foot_test_stand/src/state.c
-gui.h
-/root/foot_test_stand/src/gui.h
-
-/root/foot_test_stand/src/state.c
+/root/Foot_test_stand/src/CLI.c
 state.h
-/root/foot_test_stand/src/state.h
+/root/Foot_test_stand/src/state.h
+state.c
+/root/Foot_test_stand/src/state.c
+gui.h
+/root/Foot_test_stand/src/gui.h
+
+/root/Foot_test_stand/src/state.c
+state.h
+/root/Foot_test_stand/src/state.h
 
 /usr/include/atk-1.0/atk/atk.h
 atk/atkobject.h

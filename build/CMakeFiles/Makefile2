@@ -47,10 +47,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/foot_test_stand
+CMAKE_SOURCE_DIR = /root/Foot_test_stand
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/foot_test_stand/build
+CMAKE_BINARY_DIR = /root/Foot_test_stand/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/ADC.dir
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /root/foot_test_stand/build
 CMakeFiles/ADC.dir/all: CMakeFiles/foot_stand.dir/all
 	$(MAKE) -f CMakeFiles/ADC.dir/build.make CMakeFiles/ADC.dir/depend
 	$(MAKE) -f CMakeFiles/ADC.dir/build.make CMakeFiles/ADC.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/foot_test_stand/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/Foot_test_stand/build/CMakeFiles  1
 	@echo "Built target ADC"
 .PHONY : CMakeFiles/ADC.dir/all
 
@@ -69,9 +69,9 @@ all: CMakeFiles/ADC.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ADC.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/foot_test_stand/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/Foot_test_stand/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ADC.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/foot_test_stand/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/Foot_test_stand/build/CMakeFiles 0
 .PHONY : CMakeFiles/ADC.dir/rule
 
 # Convenience name for target.
@@ -94,7 +94,7 @@ clean: CMakeFiles/ADC.dir/clean
 CMakeFiles/foot_stand.dir/all:
 	$(MAKE) -f CMakeFiles/foot_stand.dir/build.make CMakeFiles/foot_stand.dir/depend
 	$(MAKE) -f CMakeFiles/foot_stand.dir/build.make CMakeFiles/foot_stand.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/foot_test_stand/build/CMakeFiles  2 3 4
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/Foot_test_stand/build/CMakeFiles  2 3 4
 	@echo "Built target foot_stand"
 .PHONY : CMakeFiles/foot_stand.dir/all
 
@@ -104,9 +104,9 @@ all: CMakeFiles/foot_stand.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/foot_stand.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/foot_test_stand/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/Foot_test_stand/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/foot_stand.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/foot_test_stand/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/Foot_test_stand/build/CMakeFiles 0
 .PHONY : CMakeFiles/foot_stand.dir/rule
 
 # Convenience name for target.
@@ -129,7 +129,7 @@ clean: CMakeFiles/foot_stand.dir/clean
 CMakeFiles/main_app.dir/all: CMakeFiles/foot_stand.dir/all
 	$(MAKE) -f CMakeFiles/main_app.dir/build.make CMakeFiles/main_app.dir/depend
 	$(MAKE) -f CMakeFiles/main_app.dir/build.make CMakeFiles/main_app.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/foot_test_stand/build/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/Foot_test_stand/build/CMakeFiles  5
 	@echo "Built target main_app"
 .PHONY : CMakeFiles/main_app.dir/all
 
@@ -139,9 +139,9 @@ all: CMakeFiles/main_app.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main_app.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/foot_test_stand/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/Foot_test_stand/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main_app.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/foot_test_stand/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/Foot_test_stand/build/CMakeFiles 0
 .PHONY : CMakeFiles/main_app.dir/rule
 
 # Convenience name for target.

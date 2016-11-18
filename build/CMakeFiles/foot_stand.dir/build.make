@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/foot_test_stand
+CMAKE_SOURCE_DIR = /root/Foot_test_stand
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/foot_test_stand/build
+CMAKE_BINARY_DIR = /root/Foot_test_stand/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/foot_stand.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/foot_stand.dir/flags.make
 
 CMakeFiles/foot_stand.dir/src/CLI.c.o: CMakeFiles/foot_stand.dir/flags.make
 CMakeFiles/foot_stand.dir/src/CLI.c.o: ../src/CLI.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/foot_test_stand/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/Foot_test_stand/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/foot_stand.dir/src/CLI.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/foot_stand.dir/src/CLI.c.o   -c /root/foot_test_stand/src/CLI.c
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/foot_stand.dir/src/CLI.c.o   -c /root/Foot_test_stand/src/CLI.c
 
 CMakeFiles/foot_stand.dir/src/CLI.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/foot_stand.dir/src/CLI.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /root/foot_test_stand/src/CLI.c > CMakeFiles/foot_stand.dir/src/CLI.c.i
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /root/Foot_test_stand/src/CLI.c > CMakeFiles/foot_stand.dir/src/CLI.c.i
 
 CMakeFiles/foot_stand.dir/src/CLI.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/foot_stand.dir/src/CLI.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /root/foot_test_stand/src/CLI.c -o CMakeFiles/foot_stand.dir/src/CLI.c.s
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /root/Foot_test_stand/src/CLI.c -o CMakeFiles/foot_stand.dir/src/CLI.c.s
 
 CMakeFiles/foot_stand.dir/src/CLI.c.o.requires:
 .PHONY : CMakeFiles/foot_stand.dir/src/CLI.c.o.requires
@@ -74,17 +74,17 @@ CMakeFiles/foot_stand.dir/src/CLI.c.o.provides.build: CMakeFiles/foot_stand.dir/
 
 CMakeFiles/foot_stand.dir/src/state.c.o: CMakeFiles/foot_stand.dir/flags.make
 CMakeFiles/foot_stand.dir/src/state.c.o: ../src/state.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/foot_test_stand/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/Foot_test_stand/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/foot_stand.dir/src/state.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/foot_stand.dir/src/state.c.o   -c /root/foot_test_stand/src/state.c
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/foot_stand.dir/src/state.c.o   -c /root/Foot_test_stand/src/state.c
 
 CMakeFiles/foot_stand.dir/src/state.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/foot_stand.dir/src/state.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /root/foot_test_stand/src/state.c > CMakeFiles/foot_stand.dir/src/state.c.i
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /root/Foot_test_stand/src/state.c > CMakeFiles/foot_stand.dir/src/state.c.i
 
 CMakeFiles/foot_stand.dir/src/state.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/foot_stand.dir/src/state.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /root/foot_test_stand/src/state.c -o CMakeFiles/foot_stand.dir/src/state.c.s
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /root/Foot_test_stand/src/state.c -o CMakeFiles/foot_stand.dir/src/state.c.s
 
 CMakeFiles/foot_stand.dir/src/state.c.o.requires:
 .PHONY : CMakeFiles/foot_stand.dir/src/state.c.o.requires
@@ -97,17 +97,17 @@ CMakeFiles/foot_stand.dir/src/state.c.o.provides.build: CMakeFiles/foot_stand.di
 
 CMakeFiles/foot_stand.dir/src/gui.c.o: CMakeFiles/foot_stand.dir/flags.make
 CMakeFiles/foot_stand.dir/src/gui.c.o: ../src/gui.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/foot_test_stand/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/Foot_test_stand/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/foot_stand.dir/src/gui.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/foot_stand.dir/src/gui.c.o   -c /root/foot_test_stand/src/gui.c
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/foot_stand.dir/src/gui.c.o   -c /root/Foot_test_stand/src/gui.c
 
 CMakeFiles/foot_stand.dir/src/gui.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/foot_stand.dir/src/gui.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /root/foot_test_stand/src/gui.c > CMakeFiles/foot_stand.dir/src/gui.c.i
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /root/Foot_test_stand/src/gui.c > CMakeFiles/foot_stand.dir/src/gui.c.i
 
 CMakeFiles/foot_stand.dir/src/gui.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/foot_stand.dir/src/gui.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /root/foot_test_stand/src/gui.c -o CMakeFiles/foot_stand.dir/src/gui.c.s
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /root/Foot_test_stand/src/gui.c -o CMakeFiles/foot_stand.dir/src/gui.c.s
 
 CMakeFiles/foot_stand.dir/src/gui.c.o.requires:
 .PHONY : CMakeFiles/foot_stand.dir/src/gui.c.o.requires
@@ -150,6 +150,6 @@ CMakeFiles/foot_stand.dir/clean:
 .PHONY : CMakeFiles/foot_stand.dir/clean
 
 CMakeFiles/foot_stand.dir/depend:
-	cd /root/foot_test_stand/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/foot_test_stand /root/foot_test_stand /root/foot_test_stand/build /root/foot_test_stand/build /root/foot_test_stand/build/CMakeFiles/foot_stand.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/Foot_test_stand/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/Foot_test_stand /root/Foot_test_stand /root/Foot_test_stand/build /root/Foot_test_stand/build /root/Foot_test_stand/build/CMakeFiles/foot_stand.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/foot_stand.dir/depend
 

@@ -4,13 +4,13 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/root/foot_test_stand/src/gui.c" "/root/foot_test_stand/build/CMakeFiles/main_app.dir/src/gui.c.o"
+  "/root/Foot_test_stand/src/gui.c" "/root/Foot_test_stand/build/CMakeFiles/main_app.dir/src/gui.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
-  "/root/foot_test_stand/build/CMakeFiles/foot_stand.dir/DependInfo.cmake"
+  "/root/Foot_test_stand/build/CMakeFiles/foot_stand.dir/DependInfo.cmake"
   )
 
 # The include file search paths:

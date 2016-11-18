@@ -4,9 +4,9 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/root/foot_test_stand/src/CLI.c" "/root/foot_test_stand/build/CMakeFiles/foot_stand.dir/src/CLI.c.o"
-  "/root/foot_test_stand/src/gui.c" "/root/foot_test_stand/build/CMakeFiles/foot_stand.dir/src/gui.c.o"
-  "/root/foot_test_stand/src/state.c" "/root/foot_test_stand/build/CMakeFiles/foot_stand.dir/src/state.c.o"
+  "/root/Foot_test_stand/src/CLI.c" "/root/Foot_test_stand/build/CMakeFiles/foot_stand.dir/src/CLI.c.o"
+  "/root/Foot_test_stand/src/gui.c" "/root/Foot_test_stand/build/CMakeFiles/foot_stand.dir/src/gui.c.o"
+  "/root/Foot_test_stand/src/state.c" "/root/Foot_test_stand/build/CMakeFiles/foot_stand.dir/src/state.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 
