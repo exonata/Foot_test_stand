@@ -904,7 +904,9 @@ int readADC(unsigned int pin)
      
      //Will trigger if the ADC is not enabled  
      if (fd < 0) {  
-          perror("ADC - problem opening ADC");  
+          perror("ADC - problem opening ADC"); 
+          printf (pin);
+          printf("\n");
      }//end if  
      
      read(fd, &val, 4);     //read ADC ing val (up to 4 digits 0-1799)  

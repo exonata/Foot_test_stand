@@ -5,6 +5,7 @@
  #include <fcntl.h>     //define O_WONLY and O_RDONLY  
 #include <math.h>
 #include "./BBBIOlib/BBBio_lib/BBBiolib.h"
+#include "newmain.h"
 #define MAX_BUF 64     //This is plenty large
 #define X_INTERCEPT_LOAD_CELL_1 2.0671 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 #define Y_INTERCEPT_LOAD_CELL_1 17.3 //computed from testing load cell and graphing in excel lbs vs output voltage mV
@@ -32,29 +33,61 @@
  //main program  
  int main()  
  {
+	 
+	 
 	 system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
-	 float adc0 = readADC(0);
-	 printf("LC1: The voltage in mV is %f\n", adc0);
-	 if (adc0 <= 17.3) {
-		 printf("The force measured is: 0 lbs\n");
-	 } else {
-		 printf("The voltage of Load Cell 1 is: %f\n", adc0);
-		 float force = ((adc0 - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1); //we have a linear equation that maps voltage to lbs
-		 printf("The force measured is: %f lbs \n", ceil(force));
+	 for(int b = 0; b < 10; b++)
+	 {
+		 openValves(0);
+		 sleep(250);
+		 float adc0 = readADC(0);
+				 printf("LC1: The voltage in mV is %f\n", adc0);
+				 if (adc0 <= 17.3) {
+					 printf("The force measured is: 0 lbs\n");
+				 } else {
+					 printf("The voltage of Load Cell 1 is: %f\n", adc0);
+					 float force = ((adc0 - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1); //we have a linear equation that maps voltage to lbs
+					 printf("The force measured is: %f lbs \n", ceil(force));
+				 }
+			
+				 float adc1 = readADC(1);
+				 printf("LC2: The voltage in mV is %f\n", adc1);
+				 if (adc1 <= 25) {
+					 printf("The force measured is: 0 lbs\n");
+				 } else {
+					 printf("The voltage of Load Cell 2 is: %f\n", adc1);
+					 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
+					 printf("The force measured is: %f lbs \n", ceil(force));
+				 }
+		 sleep(250);		
+		 closeValves(0);
+		 sleep(250);
+		 float adc0 = readADC(0);
+						 printf("LC1: The voltage in mV is %f\n", adc0);
+						 if (adc0 <= 17.3) {
+							 printf("The force measured is: 0 lbs\n");
+						 } else {
+							 printf("The voltage of Load Cell 1 is: %f\n", adc0);
+							 float force = ((adc0 - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1); //we have a linear equation that maps voltage to lbs
+							 printf("The force measured is: %f lbs \n", ceil(force));
+						 }
+					
+						 float adc1 = readADC(1);
+						 printf("LC2: The voltage in mV is %f\n", adc1);
+						 if (adc1 <= 25) {
+							 printf("The force measured is: 0 lbs\n");
+						 } else {
+							 printf("The voltage of Load Cell 2 is: %f\n", adc1);
+							 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
+							 printf("The force measured is: %f lbs \n", ceil(force));
+						 }
+		 sleep(250);
+		 
 	 }
-
-	 float adc1 = readADC(1);
-	 printf("LC2: The voltage in mV is %f\n", adc1);
-	 if (adc1 <= 25) {
-		 printf("The force measured is: 0 lbs\n");
-	 } else {
-		 printf("The voltage of Load Cell 2 is: %f\n", adc1);
-		 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
-		 printf("The force measured is: %f lbs \n", ceil(force));
-	 }
+		
 
 
-	 iolib_free();
+	
 
 	 /**
       printf("Voltage 2 Heel: %f V\n",adc2);
@@ -77,7 +110,7 @@
       //printf("Heel: %f ohms\n",resistanceH);
       //printf("ADC 3: %f ohms\n", resistanceT);
 
-
+	 iolib_free();
       return 0;
  }//end main
 
