@@ -59,7 +59,7 @@
 
 /**define Buffer size for ADC*/
 #define BUFFER_SIZE 100
-#define SAMPLE_SIZE 10
+#define SAMPLE_SIZE 1
 
 /**PWM defines*/
 #define PWM_HZ 500
