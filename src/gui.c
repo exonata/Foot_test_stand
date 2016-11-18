@@ -613,7 +613,7 @@ void testADC() {
 			 }
 			 
 			 adc2 = readADC(2);
-			 float adc3 = readADC(3);
+			  adc3 = readADC(3);
 		      printf("Voltage 2 Heel: %f V\n",adc2);
 		       printf("Voltage 3 Toe: %f V\n", adc3);
 
