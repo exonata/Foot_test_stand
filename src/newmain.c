@@ -334,6 +334,7 @@ void openValve(int16_t valveDefine)
 		pin_low(HEADER_P8,SOL_VALVE_2); //unexcite valve 2
 		if(pParam->numSAMPLE + 1 == MAX_SAMPLE)
 		{
+			printf("sample b upstep \n");
 			pin_high(HEADER_P8,SOL_VALVE_3); //excite valve 3
 			pin_low(HEADER_P8,SOL_VALVE_4); //unexcite valve 4
 		}		
@@ -365,6 +366,7 @@ void closeValve(int16_t valveDefine)
 		pin_high(HEADER_P8,SOL_VALVE_2); //excite valve 2
 		if(pParam->numSAMPLE + 1 == MAX_SAMPLE)
 		{
+			printf("sample b downstep \n");
 			pin_low(HEADER_P8,SOL_VALVE_3); //unexcite valve 3
 			pin_high(HEADER_P8,SOL_VALVE_4); //excite valve 4
 		}
@@ -543,7 +545,7 @@ void cleanTest(text_responses *text_obj) {
 
 	pParam->count = 0;
 	pParam->FORCE_PROF = 0;
-	pParam->bTurnFlag = true;
+	//pParam->bTurnFlag = true;
 	pParam->bLogTrue = true;
 	pParam->stateBeforePause = init;
 	pParam->bCommandFlag = false;
@@ -564,7 +566,7 @@ void cleanTest(text_responses *text_obj) {
 	
 	offSetLC1 = (ADC_MAX_V * pSamples[sample_A]->measuredForce) / RESOLUTION_ADC;
 	printf("Sample 1 load cell offset: %f\n", offSetLC1);
-	if (pParam->numSAMPLE == MAX_SAMPLE)
+	if (pParam->numSAMPLE + 1 == MAX_SAMPLE)
 	{
 		offSetLC2 = (ADC_MAX_V * pSamples[sample_B]->measuredForce) / RESOLUTION_ADC;
 		printf("Sample 2 load cell offset: %f\n", offSetLC2);
@@ -778,14 +780,14 @@ int16_t param16(char *selection, char * setGet, int16_t value) {
 uint16_t paramu16(char *selection, char *setGet, uint16_t value) {
 	if (strcmp(setGet, "Set") == 0) {
 		if (strcmp(selection, "numSAMPLE") == 0) {
-			pParam-> numSAMPLE = value;
+			pParam->numSAMPLE = value;
 		} else if (strcmp(selection, "command") == 0) {
 			pParam->command = value;
 		}
 		return -1;
 	} else if (strcmp(setGet, "Get") == 0) {
 		if (strcmp(selection, "numSAMPLE") == 0) {
-			return pParam-> numSAMPLE;
+			return pParam->numSAMPLE;
 		} else if (strcmp(selection, "command") == 0) {
 			return pParam->command;
 		}
@@ -836,6 +838,7 @@ void analyzeContact(int16_t sample) {
 	{
 		if(pParam->bTurnFlag)
 		{
+			printf("turn flag on?\n");
 			if(!pSamples[sample]->bNextSensorContact)
 			{
 				printf("starting turning logic!\n");
