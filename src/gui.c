@@ -201,7 +201,7 @@ void *doSomeThing(void *arg)
     }
     signal(SIGALRM, SIG_IGN);
 	printf("TEST COMPLETE!\n");
-	freeEverything();
+	//freeEverything();
 	startTest = 0; //reset start test to zero
     return NULL;
 }
