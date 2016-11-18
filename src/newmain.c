@@ -912,7 +912,7 @@ int readADC(unsigned int pin)
      
      
      int sample = atoi(val);
-     printf("sample: %d\n", sample)
+     printf("sample: %d\n", sample);
      return sample;     //returns an integer value (rather than ascii)  
 }//end read ADC()
 
