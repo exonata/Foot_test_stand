@@ -216,7 +216,7 @@ float getLoadCell(int16_t sampleNum)
 		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
 		signal(SIGALRM, SIG_IGN);
-		//printf("Measurement LC1 is %d, %f\n", sample, force);
+		printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
 	} else if (sampleNum == sample_B) {
 		sample = buffer_LOAD_CELL_2[0];
 		//sample =  readADC(LOAD_CELL_2);
@@ -272,7 +272,7 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			sample = buffer_TOE_1_ADC[0];
 			//sample =  readADC(TOE_1_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured toe 1: %f\n", voltageMeasured);
+			printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
