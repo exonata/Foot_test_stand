@@ -117,7 +117,7 @@
       return 0;
  }//end main
 
-/*
+
  //Function definitions  
  int readADC(unsigned int pin)  
  {  
@@ -141,4 +141,3 @@
       
       return atoi(val);     //returns an integer value (rather than ascii)  
  }//end read ADC()
-*/

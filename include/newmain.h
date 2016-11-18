@@ -99,7 +99,11 @@
 #define MAX_SAMPLE 2 //max number of samples
 #define MAX_BUF 64     //This is plenty large
 
-
+//#define MAX_BUF 64     //This is plenty large
+//#define X_INTERCEPT_LOAD_CELL_1 2.0671 //computed from testing load cell and graphing in excel lbs vs output voltage mV
+#define Y_INTERCEPT_LOAD_CELL_1 17.3 //computed from testing load cell and graphing in excel lbs vs output voltage mV
+//#define X_INTERCEPT_LOAD_CELL_2 2.0644 //computed from testing load cell and graphing in excel lbs vs output voltage mV
+#define Y_INTERCEPT_LOAD_CELL_2 20.6
 
 typedef struct data_t{
 	uint16_t sampleNum, currentSubState, nextSubState;
