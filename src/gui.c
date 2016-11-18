@@ -728,6 +728,8 @@ int main (int    argc,
 				 printf("The force measured is: %f lbs \n", ceil(force));
 			 }
 			 sleep(250);
+			 
+		 }
 	
 	
 	GtkApplication *app;
