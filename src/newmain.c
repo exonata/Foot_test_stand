@@ -272,8 +272,6 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 {
 	//printf("got into foot val\n");
 	
-
-	
 	
 	float resistance;
 	unsigned int sample;
@@ -282,26 +280,31 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			//sample = buffer_TOE_1_ADC[0];
 			sample =  readADC(TOE_1_ADC);
 			//float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, voltageMeasured);
+			//printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, voltageMeasured);
 			//float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 			
-			 float actualVoltage1 = adc2 / (float) GAIN_TOE_HEEL;
+			 float actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
+			 
+				printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, actualVoltage1);
 			float constRes1 = (actualVoltage1) / FIVE_V_INPUT;
 			float r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 			
 			
 			
-		} else if (toeHeel == heel) {
+		} 
+		else if (toeHeel == heel) 
+		{
 			//sample = buffer_HEEL_1_ADC[0];
 			sample = readADC(HEEL_1_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			//printf("voltage measured heel 1: %f\n", voltageMeasured);
-			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
-			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			//float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 			
-			float actualVoltage1 = adc2 / (float) GAIN_TOE_HEEL;
+			float actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
+			printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, actualVoltage1);
 			float constRes1 = (actualVoltage1) / FIVE_V_INPUT;
 			float r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
