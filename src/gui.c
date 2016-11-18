@@ -529,7 +529,7 @@ void testADC() {
 	//int i ,j;
 	
 	
-	system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
+	//system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
 		 for(int b = 0; b < 2; b++) 
 		 {
 			 printf("in loop\n");
