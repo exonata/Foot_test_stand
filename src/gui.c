@@ -562,14 +562,35 @@ void testADC() {
 				 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
 				 printf("The force measured is: %f lbs \n", ceil(force));
 			 }
+			 
+			 float adc2 = readADC(2);
+			 float adc3 = readADC(3);
+		      printf("Voltage 2 Heel: %f V\n",adc2);
+		       printf("Voltage 3 Toe: %f V\n", adc3);
+
+		      float actualVoltage1 = adc2 / (float) GAIN_TOE_HEEL;
+		   //   printf("Heel voltage cut gain %f\n", actualVoltage1);
+		      float constRes1 = (actualVoltage1) / FIVE_V_INPUT;
+		      float r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
+		      //printf("Res before 470 sub heel %f\n",r1_resistance);
+		      float resistanceH = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+		      
+		      float actualVoltage2 = adc3 / (float) GAIN_TOE_HEEL;
+		     //printf("Toe voltage cut gain %f\n", actualVoltage2);
+		      float constRes2 = (actualVoltage2) / FIVE_V_INPUT;
+		      float r2_resistance = (R2_TOE - constRes2 * R2_TOE) / constRes2;
+		      //printf("Res before 470 sub toe %f\n",r2_resistance);
+		      float resistanceT = r2_resistance - FOOT_SENSOR_INTERNAL_RES;
+			
+		      printf("Heel: %f ohms\n",resistanceH);
+		      printf("ADC 3: %f ohms\n", resistanceT);
+		      
 			 sleep(2);		
-				printf("Now set valve 1 and 3 high and leave 2 and 4 low\n");
+				printf("Now set valve 1 and 3 low and set 2 and 4 high\n");
 				pin_low(HEADER_P8,SOL_VALVE_1);
-				pin_low(HEADER_P8,SOL_VALVE_2);
 				pin_low(HEADER_P8,SOL_VALVE_3);
-				pin_low(HEADER_P8,SOL_VALVE_4);
-				pin_high(HEADER_P8,SOL_VALVE_1);
-				pin_high(HEADER_P8,SOL_VALVE_3);
+				pin_high(HEADER_P8,SOL_VALVE_2);
+				pin_high(HEADER_P8,SOL_VALVE_4);
 			 sleep(2); 
 			 adc0 = readADC(0);
 			 printf("LC1: The voltage in mV is %f\n", adc0);
@@ -590,6 +611,28 @@ void testADC() {
 				 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
 				 printf("The force measured is: %f lbs \n", ceil(force));
 			 }
+			 
+			 adc2 = readADC(2);
+			 float adc3 = readADC(3);
+		      printf("Voltage 2 Heel: %f V\n",adc2);
+		       printf("Voltage 3 Toe: %f V\n", adc3);
+
+		      actualVoltage1 = adc2 / (float) GAIN_TOE_HEEL;
+		   //   printf("Heel voltage cut gain %f\n", actualVoltage1);
+		      constRes1 = (actualVoltage1) / FIVE_V_INPUT;
+		      r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
+		      //printf("Res before 470 sub heel %f\n",r1_resistance);
+		      resistanceH = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+		      
+		      actualVoltage2 = adc3 / (float) GAIN_TOE_HEEL;
+		     //printf("Toe voltage cut gain %f\n", actualVoltage2);
+		      constRes2 = (actualVoltage2) / FIVE_V_INPUT;
+		       r2_resistance = (R2_TOE - constRes2 * R2_TOE) / constRes2;
+		      //printf("Res before 470 sub toe %f\n",r2_resistance);
+		       resistanceT = r2_resistance - FOOT_SENSOR_INTERNAL_RES;
+			
+		      printf("Heel: %f ohms\n",resistanceH);
+		      printf("ADC 3: %f ohms\n", resistanceT);
 			 sleep(2);
 			 
 		 }
@@ -599,9 +642,7 @@ void testADC() {
 	
 	
 	
-	
-	
-	
+		
 	
 	
 	
