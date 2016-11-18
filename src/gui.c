@@ -19,7 +19,7 @@
  */
 #include "newmain.h"
 #include "gui.h"
-//#include "newmain.c"
+#include "newmain.c"
 
 //need an array to store the theads
 pthread_t tid[2];
@@ -661,9 +661,8 @@ void PWMTest() {
  * THESE ARE ALL THE FUNCTIONS FOR THE BACKEND CODE!!!!
  */
 
-
-int
-main (int    argc,
+/*
+int main (int    argc,
       char **argv)
 {
 	//if we want to test the ADC, GPIO, and PWM in isolation, comment out rest of main
@@ -672,7 +671,7 @@ main (int    argc,
 	testVerticalValves();
 	testRotaryValves()
 	PWMTest();
-	*/
+	
 	iolib_init(); 				//initiate GPIO library
 	//initValve();   				//initiate valve pins
 	//initADC();    				//set up ADCs
@@ -687,3 +686,5 @@ main (int    argc,
 	g_object_unref (app);
 	return status;
 }
+
+*/
