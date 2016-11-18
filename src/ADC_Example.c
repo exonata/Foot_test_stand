@@ -39,8 +39,9 @@
 	 system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
 	 for(int b = 0; b < 10; b++) 
 	 {
-		 openValve(verticalValve);
 		 printf("in loop\n");
+		 openValve(verticalValve);
+		 
 		 sleep(250);
 		 float adc0 = readADC(0);
 		 printf("LC1: The voltage in mV is %f\n", adc0);
