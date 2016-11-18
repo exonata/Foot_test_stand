@@ -19,7 +19,7 @@
  */
 #include "newmain.h"
 #include "gui.h"
-#include "newmain.c"
+//#include "newmain.c"
 
 //need an array to store the theads
 pthread_t tid[2];
