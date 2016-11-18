@@ -103,13 +103,12 @@
 //#define X_INTERCEPT_LOAD_CELL_1 2.0671 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 #define Y_INTERCEPT_LOAD_CELL_1 17.3 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 //#define X_INTERCEPT_LOAD_CELL_2 2.0644 //computed from testing load cell and graphing in excel lbs vs output voltage mV
+#define Y_INTERCEPT_LOAD_CELL_2 20.6
 
 
 #define FIVE_V_INPUT 4.8
 #define R2_TOE 322
 #define R2_HEEL 2298
-
-
 
 
 typedef struct data_t{
