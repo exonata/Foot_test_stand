@@ -206,20 +206,6 @@ int updateVals()
 float getLoadCell(int16_t sampleNum)
 {
 	
-	 unsigned int adc0 = readADC(0);
-	 printf("LC1: The voltage in mV is %f\n", adc0);
-	 if (adc0 <= 17.3) {
-		 printf("The force measured is: 0 lbs\n");
-	 } else {
-		 printf("The voltage of Load Cell 1 is: %f\n", adc0);
-		 float force = ((adc0 - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1); //we have a linear equation that maps voltage to lbs
-		 printf("The force measured is: %f lbs \n", ceil(force));
-	 }
-	
-	
-	
-	
-	
 	
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
@@ -285,22 +271,39 @@ double UpdatePID(SPid * pid, double error, double position) {
 float getFootVal(int16_t sampleNum, int toeHeel)
 {
 	//printf("got into foot val\n");
+	
+
+	
+	
 	float resistance;
 	unsigned int sample;
 		if (sampleNum == sample_A) {
 		if (toeHeel == toe) {
 			//sample = buffer_TOE_1_ADC[0];
 			sample =  readADC(TOE_1_ADC);
-			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+			//float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, voltageMeasured);
-			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+			//float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			
+			 float actualVoltage1 = adc2 / (float) GAIN_TOE_HEEL;
+			float constRes1 = (actualVoltage1) / FIVE_V_INPUT;
+			float r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			
+			
+			
 		} else if (toeHeel == heel) {
 			//sample = buffer_HEEL_1_ADC[0];
 			sample = readADC(HEEL_1_ADC);
 			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			//printf("voltage measured heel 1: %f\n", voltageMeasured);
 			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			
+			float actualVoltage1 = adc2 / (float) GAIN_TOE_HEEL;
+			float constRes1 = (actualVoltage1) / FIVE_V_INPUT;
+			float r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		}
 		else
