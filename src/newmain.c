@@ -59,7 +59,7 @@ int8_t filename_1[LOGNAME_SIZE];
  * Clock Divider : 3200 ,  Open Dly : 0 ,  Sample Average : 1 ,    Sample Dly : 1
    */
 const int16_t clk_div = 160;
-const int16_t open_dly = 0;
+const int16_t open_dly = 1;
 const int16_t sample_dly = 1;
 
 /*--------------------------------------------------------------------------------*/
