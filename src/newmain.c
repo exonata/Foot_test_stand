@@ -332,6 +332,7 @@ void openValve(int16_t valveDefine)
 	case verticalValve:
 		pin_high(HEADER_P8,SOL_VALVE_1); //excite valve 1
 		pin_low(HEADER_P8,SOL_VALVE_2); //unexcite valve 2
+		printf("numSample: %d, MAX_SAMPLE: %d \n", pParam->numSAMPLE, MAX_SAMPLE);
 		if(pParam->numSAMPLE + 1 == MAX_SAMPLE)
 		{
 			printf("sample b upstep \n");
