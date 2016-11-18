@@ -543,7 +543,7 @@ void testADC() {
 				pin_high(HEADER_P8,SOL_VALVE_3);
 			 
 			 sleep(2);
-			 float adc0 = readADC(0);
+			 unsigned int adc0 = readADC(0);
 			 printf("LC1: The voltage in mV is %f\n", adc0);
 			 if (adc0 <= 17.3) {
 				 printf("The force measured is: 0 lbs\n");
@@ -553,7 +553,7 @@ void testADC() {
 				 printf("The force measured is: %f lbs \n", ceil(force));
 			 }
 				
-			float adc1 = readADC(1);
+			 unsigned int adc1 = readADC(1);
 			 printf("LC2: The voltage in mV is %f\n", adc1);
 			 if (adc1 <= 25) {
 				 printf("The force measured is: 0 lbs\n");
@@ -563,10 +563,17 @@ void testADC() {
 				 printf("The force measured is: %f lbs \n", ceil(force));
 			 }
 			 
-			 float adc2 = readADC(2);
-			 float adc3 = readADC(3);
+			 unsigned int adc2 = readADC(2);
+			 unsigned int adc3 = readADC(3);
+			 
+			 unsigned int adc4 = readADC(4);
+			 unsigned int adc5 = readADC(5);
+			 
 		      printf("Voltage 2 Heel: %f V\n",adc2);
 		       printf("Voltage 3 Toe: %f V\n", adc3);
+		       
+			      printf("Voltage 4 Heel: %f V\n",adc4);
+			       printf("Voltage 5 Toe: %f V\n", adc5);
 
 		      float actualVoltage1 = adc2 / (float) GAIN_TOE_HEEL;
 		   //   printf("Heel voltage cut gain %f\n", actualVoltage1);

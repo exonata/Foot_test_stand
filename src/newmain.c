@@ -904,15 +904,16 @@ int readADC(unsigned int pin)
      
      //Will trigger if the ADC is not enabled  
      if (fd < 0) {  
-          perror("ADC - problem opening ADC"); 
-          printf (pin);
-          printf("\n");
+          perror("ADC - problem opening ADC");  
      }//end if  
      
      read(fd, &val, 4);     //read ADC ing val (up to 4 digits 0-1799)  
      close(fd);     //close file and stop reading  
      
-     return atoi(val);     //returns an integer value (rather than ascii)  
+     
+     int sample = atoi(val);
+     printf("sample: %d\n", sample)
+     return sample;     //returns an integer value (rather than ascii)  
 }//end read ADC()
 
 
