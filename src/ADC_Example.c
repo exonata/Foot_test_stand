@@ -35,7 +35,7 @@
  {
 	 printf("in main\n");
 	 
-	 
+/*	 
 	 system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
 	 for(int b = 0; b < 10; b++) 
 	 {
@@ -88,7 +88,7 @@
 		 
 	 }
 		
-
+*/
 
 	
 
