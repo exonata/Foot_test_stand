@@ -432,6 +432,7 @@ void runTest(text_responses *text_obj) {
 		//printf("I made it here before switch!\n");
 		switch(currentState) {
 			case init:
+				printf("init \n");
 				iolib_init(); 				//initiate GPIO library
 				initValve();   				//initiate valve pins
 				initADC();    				//set up ADCs
@@ -440,13 +441,16 @@ void runTest(text_responses *text_obj) {
 				initTest();
 				break;
 				
-			case downStep:			
+			case downStep:	
+				printf("upstep\n");
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case upStep:	
+				printf("downstep\n");
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case hold:
+				printf("hold\n");
 				if (currentState != nextState) {
 					if(nextState == downStep) {
 						initTest();
@@ -466,9 +470,11 @@ void runTest(text_responses *text_obj) {
 				break;
 				
 			case reset:
+				printf("reset\n");
 				break;
 				
 			case quit:
+				printf("break\n");
 				break;
 				
 			default:
