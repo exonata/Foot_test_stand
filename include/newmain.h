@@ -99,13 +99,7 @@
 #define MAX_SAMPLE 2 //max number of samples
 #define MAX_BUF 64     //This is plenty large
 
-/** ADC clock variables
- * Derived based on BBBio documentation
- * Clock Divider : 3200 ,  Open Dly : 0 ,  Sample Average : 1 ,    Sample Dly : 1
-   */
-const int16_t clk_div = 160;
-const int16_t open_dly = 1;
-const int16_t sample_dly = 1;
+
 
 typedef struct data_t{
 	uint16_t sampleNum, currentSubState, nextSubState;
