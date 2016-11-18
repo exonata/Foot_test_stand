@@ -438,8 +438,10 @@ void runTest(text_responses *text_obj) {
 				iolib_init(); 				//initiate GPIO library
 				initValve();   				//initiate valve pins
 				initADC();    				//set up ADCs
+				signal(SIGALRM, SIG_IGN);
 				enableLoadCellADC(); 	 	//enable load cell pins
 				enableFootADC(); 
+				signal(SIGALRM, SIG_IGN);
 				initTest();
 				break;
 				
