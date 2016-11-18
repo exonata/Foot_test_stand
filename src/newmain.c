@@ -205,6 +205,22 @@ int updateVals()
  */
 float getLoadCell(int16_t sampleNum)
 {
+	
+	 unsigned int adc0 = readADC(0);
+	 printf("LC1: The voltage in mV is %f\n", adc0);
+	 if (adc0 <= 17.3) {
+		 printf("The force measured is: 0 lbs\n");
+	 } else {
+		 printf("The voltage of Load Cell 1 is: %f\n", adc0);
+		 float force = ((adc0 - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1); //we have a linear equation that maps voltage to lbs
+		 printf("The force measured is: %f lbs \n", ceil(force));
+	 }
+	
+	
+	
+	
+	
+	
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
 	float force;
@@ -213,16 +229,20 @@ float getLoadCell(int16_t sampleNum)
 		//sample = buffer_LOAD_CELL_1[0];
 		sample =  readADC(LOAD_CELL_1);
 		signal(SIGALRM, SIG_IGN);
-		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
+		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+		//force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
+		float force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);
+		
 		signal(SIGALRM, SIG_IGN);
 		printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
 	} else if (sampleNum == sample_B) {
 		//sample = buffer_LOAD_CELL_2[0];
 		sample =  readADC(LOAD_CELL_2);
 		signal(SIGALRM, SIG_IGN);
-		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-		force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
+		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+		//force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
+		float force = ((sample - Y_INTERCEPT_LOAD_CELL_2) / X_INTERCEPT_LOAD_CELL_2);
+		
 		signal(SIGALRM, SIG_IGN);
 		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
