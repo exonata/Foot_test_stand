@@ -5,7 +5,7 @@
  #include <fcntl.h>     //define O_WONLY and O_RDONLY  
 #include <math.h>
 #include "./BBBIOlib/BBBio_lib/BBBiolib.h"
-#include "newmain.h"
+//#include "newmain.h"
 #define MAX_BUF 64     //This is plenty large
 #define X_INTERCEPT_LOAD_CELL_1 2.0671 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 #define Y_INTERCEPT_LOAD_CELL_1 17.3 //computed from testing load cell and graphing in excel lbs vs output voltage mV

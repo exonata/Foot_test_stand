@@ -661,7 +661,7 @@ void PWMTest() {
  * THESE ARE ALL THE FUNCTIONS FOR THE BACKEND CODE!!!!
  */
 
-/*
+
 int main (int    argc,
       char **argv)
 {
@@ -671,13 +671,65 @@ int main (int    argc,
 	testVerticalValves();
 	testRotaryValves()
 	PWMTest();
-	
+	*/
 	iolib_init(); 				//initiate GPIO library
 	//initValve();   				//initiate valve pins
 	//initADC();    				//set up ADCs
 	//enableLoadCellADC(); 	 	//enable load cell pins
 	//enableFootADC();  			//enable foot adc pins
 	//run GUI
+	
+	system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
+		 for(int b = 0; b < 10; b++) 
+		 {
+			 printf("in loop\n");
+			 openValve(verticalValve);
+			 
+			 sleep(250);
+			 float adc0 = readADC(0);
+			 printf("LC1: The voltage in mV is %f\n", adc0);
+			 if (adc0 <= 17.3) {
+				 printf("The force measured is: 0 lbs\n");
+			 } else {
+				 printf("The voltage of Load Cell 1 is: %f\n", adc0);
+				 float force = ((adc0 - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1); //we have a linear equation that maps voltage to lbs
+				 printf("The force measured is: %f lbs \n", ceil(force));
+			 }
+				
+			float adc1 = readADC(1);
+			 printf("LC2: The voltage in mV is %f\n", adc1);
+			 if (adc1 <= 25) {
+				 printf("The force measured is: 0 lbs\n");
+			 } else {
+				 printf("The voltage of Load Cell 2 is: %f\n", adc1);
+				 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
+				 printf("The force measured is: %f lbs \n", ceil(force));
+			 }
+			 sleep(250);		
+			 closeValve(verticalValve);
+			 sleep(250); 
+			 adc0 = readADC(0);
+			 printf("LC1: The voltage in mV is %f\n", adc0);
+			 if (adc0 <= 17.3) {
+				 printf("The force measured is: 0 lbs\n");
+			 } else {
+				 printf("The voltage of Load Cell 1 is: %f\n", adc0);
+				 float force = ((adc0 - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1); //we have a linear equation that maps voltage to lbs
+				 printf("The force measured is: %f lbs \n", ceil(force));
+			 }
+						
+			 adc1 = readADC(1);
+			 printf("LC2: The voltage in mV is %f\n", adc1);
+			 if (adc1 <= 25) {
+				 printf("The force measured is: 0 lbs\n");
+			 } else {
+				 printf("The voltage of Load Cell 2 is: %f\n", adc1);
+				 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
+				 printf("The force measured is: %f lbs \n", ceil(force));
+			 }
+			 sleep(250);
+	
+	
 	GtkApplication *app;
 	int status;
 	app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
@@ -687,4 +739,4 @@ int main (int    argc,
 	return status;
 }
 
-*/
+
