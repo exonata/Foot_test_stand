@@ -542,7 +542,7 @@ void testADC() {
 				pin_high(HEADER_P8,SOL_VALVE_1);
 				pin_high(HEADER_P8,SOL_VALVE_3);
 			 
-			 sleep(250);
+			 sleep(2);
 			 float adc0 = readADC(0);
 			 printf("LC1: The voltage in mV is %f\n", adc0);
 			 if (adc0 <= 17.3) {
@@ -562,7 +562,7 @@ void testADC() {
 				 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
 				 printf("The force measured is: %f lbs \n", ceil(force));
 			 }
-			 sleep(250);		
+			 sleep(2);		
 				printf("Now set valve 1 and 3 high and leave 2 and 4 low\n");
 				pin_low(HEADER_P8,SOL_VALVE_1);
 				pin_low(HEADER_P8,SOL_VALVE_2);
@@ -570,7 +570,7 @@ void testADC() {
 				pin_low(HEADER_P8,SOL_VALVE_4);
 				pin_high(HEADER_P8,SOL_VALVE_1);
 				pin_high(HEADER_P8,SOL_VALVE_3);
-			 sleep(250); 
+			 sleep(2); 
 			 adc0 = readADC(0);
 			 printf("LC1: The voltage in mV is %f\n", adc0);
 			 if (adc0 <= 17.3) {
@@ -590,7 +590,7 @@ void testADC() {
 				 float force = ((adc1 - Y_INTERCEPT_LOAD_CELL_2 ) / X_INTERCEPT_LOAD_CELL_2); //we have a linear equation that maps voltage to lbs
 				 printf("The force measured is: %f lbs \n", ceil(force));
 			 }
-			 sleep(250);
+			 sleep(2);
 			 
 		 }
 	
