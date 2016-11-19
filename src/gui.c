@@ -810,7 +810,9 @@ int main (int    argc,
 	PWMTest();
 	*/
 	iolib_init(); 				//initiate GPIO library
-	system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
+	//system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
+	
+	
 	initValve();   				//initiate valve pins
 	//initADC();    				//set up ADCs
 	//enableLoadCellADC(); 	 	//enable load cell pins

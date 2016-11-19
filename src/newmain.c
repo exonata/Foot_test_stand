@@ -213,17 +213,17 @@ float getLoadCell(int16_t sampleNum)
 	unsigned int sample;
 	if (sampleNum == sample_A) {
 		//sample = buffer_LOAD_CELL_1[0];
-		sample =  readADC(LOAD_CELL_1);
+		sample =  readADC(0);
 		signal(SIGALRM, SIG_IGN);
 		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		//force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
 		float force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);
 		
 		signal(SIGALRM, SIG_IGN);
-		printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
+		printf("Measurement LC1 is sample: %d, force: %f\n", sample, ceil(force));
 	} else if (sampleNum == sample_B) {
 		//sample = buffer_LOAD_CELL_2[0];
-		sample =  readADC(LOAD_CELL_2);
+		sample =  readADC(1);
 		signal(SIGALRM, SIG_IGN);
 		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		//force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
@@ -233,7 +233,7 @@ float getLoadCell(int16_t sampleNum)
 		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
 
-	return(force);
+	return(ceil(force));
 }
 
 //returns the desired force in psi for pressure regulator
