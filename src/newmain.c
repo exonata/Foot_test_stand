@@ -177,17 +177,25 @@ const char * getStateEnum(int16_t state)
 
 int updateVals()
 {
-	//printf("update ADC\n");
+	printf("update ADC\n");
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
 	//BBBIO_ADCTSC_work(SAMPLE_SIZE);
-	for(int16_t sample = sample_A; sample < MAX_SAMPLE; sample++) {
-	
+	for(int16_t sample = sample_A; sample < pParam->numSAMPLE; sample++) {
 		signal(SIGALRM, SIG_IGN);
 		pSamples[sample]->measuredForce = getLoadCell(sample);
 		signal(SIGALRM, SIG_IGN);
 		pSamples[sample]->toeVal =  getFootVal(sample, toe);
 		pSamples[sample]->heelVal =  getFootVal(sample, heel);
+		
+		fprintf(outfile[sample],
+					"%.3f "
+					"%.2f "
+					"%.2f\n",				
+					pSamples[sample]->measuredForce,
+					pSamples[sample]->toeVal,
+					pSamples[sample]->heelVal);
+		
 		}
 	
 	signal(SIGALRM, SIG_IGN);
@@ -511,7 +519,7 @@ void logData()
 					
 		//
 					
-				//printf("In outfile segment1\n");
+				printf("Logging data\n");
 				fprintf(outfile[sample],
 					"%lld "
 					"%d "
