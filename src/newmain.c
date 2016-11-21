@@ -211,7 +211,7 @@ int updateVals()
  *
  * @return return float of load cell raw value.
  */
-long double etLoadCell(int16_t sampleNum)
+long double getLoadCell(int16_t sampleNum)
 {
 	
 	
