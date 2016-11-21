@@ -114,7 +114,7 @@
 typedef struct data_t{
 	uint16_t sampleNum, currentSubState, nextSubState;
 	uint32_t dataCount, lotNum, serialNum;
-	float desiredForce, measuredForce, heelVal, toeVal, baseForce;
+	long double desiredForce, measuredForce, heelVal, toeVal, baseForce;
 	bool bLogCreated, bCurrentSensorContact, bNextSensorContact;
 	int8_t fileName[LOGNAME_SIZE];
 }data_t;

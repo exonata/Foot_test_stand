@@ -189,9 +189,9 @@ int updateVals()
 		pSamples[sample]->heelVal =  getFootVal(sample, heel);
 		
 		fprintf(outfile[sample],
-					"%.3f "
-					"%.2f "
-					"%.2f\n",				
+					"%.3Lf "
+					"%.2Lf "
+					"%.2Lf\n",				
 					pSamples[sample]->measuredForce,
 					pSamples[sample]->toeVal,
 					pSamples[sample]->heelVal);
@@ -276,12 +276,14 @@ double UpdatePID(SPid * pid, double error, double position) {
  *Under the assumption we are only operating resistance 1k-10k toe and 10k-60k heel
  *Simply a voltage divider circuit with output, with R2 = 10K
  */
-float getFootVal(int16_t sampleNum, int toeHeel)
+long double getFootVal(int16_t sampleNum, int toeHeel)
 {
 	//printf("got into foot val\n");
 	
 	
-	float resistance;
+	long double resistance, r1_resistance, actualVoltage1, constRes1, voltageMeasured;
+	
+	
 	unsigned int sample;
 		if (sampleNum == sample_A) {
 		if (toeHeel == toe) {
@@ -291,13 +293,12 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 			//printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, voltageMeasured);
 			//float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			
-			 float actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
-			 
-				printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, actualVoltage1);
-			float constRes1 = (actualVoltage1) / FIVE_V_INPUT;
-			float r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
+			actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
+			p
+			constRes1 = (actualVoltage1) / FIVE_V_INPUT;
+			r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			rintf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
 			
 			
 			
@@ -306,16 +307,17 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 		{
 			//sample = buffer_HEEL_1_ADC[0];
 			sample = readADC(HEEL_1_ADC);
-			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			//printf("voltage measured heel 1: %f\n", voltageMeasured);
 			//float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 			
-			float actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
-			printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, actualVoltage1);
-			float constRes1 = (actualVoltage1) / FIVE_V_INPUT;
-			float r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
+			actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
+			//printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, actualVoltage1);
+			constRes1 = (actualVoltage1) / FIVE_V_INPUT;
+			r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
 		}
 		else
 		{
@@ -327,16 +329,16 @@ float getFootVal(int16_t sampleNum, int toeHeel)
 		if (toeHeel == toe) {
 			//sample = buffer_TOE_2_ADC[0];
 			sample = readADC(TOE_2_ADC);
-			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			//printf("voltage measured toe 2: %f\n", voltageMeasured);
-			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+			r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		} else if (toeHeel == heel) {
 			//sample = buffer_HEEL_2_ADC[0];
 			sample = readADC(HEEL_2_ADC);
-			float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			//printf("voltage measured heel 1: %f\n", voltageMeasured);
-			float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+			r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 		}
 		else
