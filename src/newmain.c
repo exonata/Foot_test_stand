@@ -211,7 +211,7 @@ int updateVals()
  *
  * @return return float of load cell raw value.
  */
-float getLoadCell(int16_t sampleNum)
+long double etLoadCell(int16_t sampleNum)
 {
 	
 	
@@ -283,7 +283,6 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 	
 	long double resistance, r1_resistance, actualVoltage1, constRes1, voltageMeasured;
 	
-	
 	unsigned int sample;
 		if (sampleNum == sample_A) {
 		if (toeHeel == toe) {
@@ -294,11 +293,11 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 			//float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 			actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
-			p
+			
 			constRes1 = (actualVoltage1) / FIVE_V_INPUT;
 			r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			rintf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
+			printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
 			
 			
 			
