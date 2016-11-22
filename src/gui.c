@@ -446,11 +446,11 @@ void runTest(text_responses *text_obj) {
 				break;
 				
 			case downStep:	
-				printf("upstep\n");
+				//printf("upstep\n");
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case upStep:	
-				printf("downstep\n");
+				//printf("downstep\n");
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case hold:
@@ -573,6 +573,7 @@ void testADC() {
 		       printf("Voltage 3 Toe: %f V\n", adc3);
 		       
 			      printf("Voltage 4 Heel: %f V\n",adc4);
+			      
 			       printf("Voltage 5 Toe: %f V\n", adc5);
 
 		      float actualVoltage1 = adc2 / (float) GAIN_TOE_HEEL;

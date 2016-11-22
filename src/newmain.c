@@ -188,10 +188,9 @@ int updateVals()
 		pSamples[sample]->toeVal =  getFootVal(sample, toe);
 		pSamples[sample]->heelVal =  getFootVal(sample, heel);
 		
-		fprintf(outfile[sample],
-					"%.3Lf "
-					"%.2Lf "
-					"%.2Lf\n",				
+		printf(	"Force: %.3Lf "
+					"Toe Val: %.2Lf "
+					"Heel Val %.2Lf\n",				
 					pSamples[sample]->measuredForce,
 					pSamples[sample]->toeVal,
 					pSamples[sample]->heelVal);
@@ -225,10 +224,10 @@ long double getLoadCell(int16_t sampleNum)
 		signal(SIGALRM, SIG_IGN);
 		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		//force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
-		float force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);
-		
+		float force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);	
 		signal(SIGALRM, SIG_IGN);
 		printf("Measurement LC1 is sample: %d, force: %f\n", sample, ceil(force));
+		
 	} else if (sampleNum == sample_B) {
 		//sample = buffer_LOAD_CELL_2[0];
 		sample =  readADC(1);
@@ -527,9 +526,9 @@ void logData()
 					"%d "
 					"%d "
 					"%.3f "
-					"%.3f "
-					"%.2f "
-					"%.2f\n",
+					"%.3Lf "
+					"%.2Lf "
+					"%.2Lf\n",
 					pParam->currentTime_ms,
 					pSamples[sample]->dataCount ,
 					pParam->count,
@@ -876,6 +875,7 @@ void analyzeContact(int16_t sample) {
 		{
 			printf("turn flag on?\n");
 			if(!pSamples[sample]->bNextSensorContact)
+				
 			{
 				printf("starting turning logic!\n");
 				delay(pParam->rotateDelay); //delay before rotation
@@ -947,7 +947,7 @@ int readADC(unsigned int pin)
      
      
      int sample = atoi(val);
-     printf("pin # %d, sample: %d\n", pin, sample);
+     //printf("pin # %d, sample: %d\n", pin, sample);
      return sample;     //returns an integer value (rather than ascii)  
 }//end read ADC()
 
