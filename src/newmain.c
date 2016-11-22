@@ -38,8 +38,8 @@ test_param_t *pParam;
 SPid *pid;
 
 //global variables for load cell offsets in volts
-float offSetLC1 = 17.3; //for the offsets
-float offSetLC2 = 20.6;
+float offSetLC1 = .0173; //for the offsets
+float offSetLC2 = .0206;
 
 //Initialize buffer for ADCs
 unsigned int buffer_LOAD_CELL_1[BUFFER_SIZE] = {0};
@@ -608,11 +608,11 @@ void cleanTest(text_responses *text_obj) {
 	//get offsets for load cells in volts
 	updateVals();
 	
-	offSetLC1 = (ADC_MAX_V * pSamples[sample_A]->measuredForce) / RESOLUTION_ADC;
+	offSetLC1 = (ADC_MAX_V * readADC(LOAD_CELL_1)) / RESOLUTION_ADC;
 	printf("Sample 1 load cell offset: %f\n", offSetLC1);
 	if (pParam->numSAMPLE == MAX_SAMPLE)
 	{
-		offSetLC2 = (ADC_MAX_V * pSamples[sample_B]->measuredForce) / RESOLUTION_ADC;
+		offSetLC2 = (ADC_MAX_V * readADC(LOAD_CELL_1)) / RESOLUTION_ADC;
 		printf("Sample 2 load cell offset: %f\n", offSetLC2);
 	}
 }

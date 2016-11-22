@@ -819,7 +819,7 @@ int main (int    argc,
 	//enableLoadCellADC(); 	 	//enable load cell pins
 	//enableFootADC();  			//enable foot adc pins
 	//run GUI
-	testADC();
+	//testADC();
 	
 	
 	GtkApplication *app;
