@@ -218,19 +218,19 @@ float getLoadCell(int16_t sampleNum)
 	
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
-	float force;
+	float force, actualVoltage;
 	unsigned int sample;
 	if (sampleNum == sample_A) 
 	{
-		//sample = buffer_LOAD_CELL_1[0];
+		//sample = buffer_LOAD_CELL_1[0];o
 		sample =  readADC(0);
 		signal(SIGALRM, SIG_IGN);
-		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-		//force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
-		force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);	
+		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
+		//force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);	
 		signal(SIGALRM, SIG_IGN);
 				
-		printf("Measurement LC1 is sample: %d, force: %f\n", sample, ceil(force));
+		printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
 		
 	}
 	else if (sampleNum == sample_B) 
@@ -238,17 +238,17 @@ float getLoadCell(int16_t sampleNum)
 		//sample = buffer_LOAD_CELL_2[0];
 		sample =  readADC(1);
 		signal(SIGALRM, SIG_IGN);
-		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-		//force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
-		force = ((sample - Y_INTERCEPT_LOAD_CELL_2) / X_INTERCEPT_LOAD_CELL_2);
-		printf("I am in the wrong loop\n");
+		actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+		force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
+		//force = ((sample - Y_INTERCEPT_LOAD_CELL_2) / X_INTERCEPT_LOAD_CELL_2);
+		//printf("I am in the wrong loop\n");
 		signal(SIGALRM, SIG_IGN);
 		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
 	
-	printf("Force: %f, ceil force: %f\n", force, ceil(force));
+	//printf("Force: %f, ceil force: %f\n", force, ceil(force));
 
-	return(ceil(force));
+	return(force);
 }
 
 //returns the desired force in psi for pressure regulator
@@ -295,15 +295,15 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 		if (toeHeel == toe) {
 			//sample = buffer_TOE_1_ADC[0];
 			sample =  readADC(TOE_1_ADC);
-			//float voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, voltageMeasured);
-			//float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
-			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
+			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			
-			constRes1 = (actualVoltage1) / FIVE_V_INPUT;
-			r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
+			r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
+			//actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
+			//constRes1 = (actualVoltage1) / FIVE_V_INPUT;
+			//r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
+			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 			//printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
 			
 			
