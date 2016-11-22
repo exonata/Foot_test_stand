@@ -188,8 +188,8 @@ int updateVals()
 		pSamples[sample]->toeVal =  getFootVal(sample, toe);
 		pSamples[sample]->heelVal =  getFootVal(sample, heel);
 		
-		printf(	"Force: %.3Lf "
-				"getLoadCell %.3Lf "
+		printf(	"Force: %f "
+				"getLoadCell %f "
 					"Toe Val: %.2Lf "
 					"Heel Val %.2Lf\n",				
 					pSamples[sample]->measuredForce,
@@ -212,7 +212,7 @@ int updateVals()
  *
  * @return return float of load cell raw value.
  */
-long double getLoadCell(int16_t sampleNum)
+float getLoadCell(int16_t sampleNum)
 {
 	
 	
@@ -227,8 +227,8 @@ long double getLoadCell(int16_t sampleNum)
 		signal(SIGALRM, SIG_IGN);
 		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		//force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
-		float force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);	
-		signal(SIGALRM, SIG_IGN);
+		force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);	
+		signal(SIGALRM, SIG_IG
 		printf("Measurement LC1 is sample: %d, force: %f\n", sample, ceil(force));
 		
 	}
@@ -239,13 +239,13 @@ long double getLoadCell(int16_t sampleNum)
 		signal(SIGALRM, SIG_IGN);
 		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		//force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
-		float force = ((sample - Y_INTERCEPT_LOAD_CELL_2) / X_INTERCEPT_LOAD_CELL_2);
+		force = ((sample - Y_INTERCEPT_LOAD_CELL_2) / X_INTERCEPT_LOAD_CELL_2);
 		printf("I am in the wrong loop\n");
 		signal(SIGALRM, SIG_IGN);
 		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
 	
-	printf("Force: %.2Lf, ceil force: %.2Lf\n", force, ceil(force));
+	printf("Force: %f, ceil force: %f\n", force, ceil(force));
 
 	return(ceil(force));
 }

@@ -173,7 +173,7 @@ void initValve();
 void initCLI(text_responses *text_obj);
 void openValve(int16_t valveDefine);
 void closeValve(int16_t valveDefine);
-long double getLoadCell(int16_t sampleNum);
+float getLoadCell(int16_t sampleNum);
 double UpdatePID(SPid * pid, double error, double position);
 void enableLoadCellADC();
 long double getFootVal(int16_t sampleNum, int toeHeel);
