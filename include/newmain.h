@@ -87,10 +87,10 @@
 #define MIN_PSI 3.0 //PSI
 #define PWM_GAIN 3 //(1 + R2/R1)
 #define MAX_V_INPUT_PRESSREG 10 //volts
-#define RESOLUTION_ADC 4096 //the counts in 12 bit ADC 0 - 4095
-#define X_INTERCEPT_LOAD_CELL_1 2.0671 //computed from testing load cell and graphing in excel lbs vs output voltage mV
+#define RESOLUTION_ADC 1800 //4096 //the counts in 12 bit ADC 0 - 4095
+#define X_INTERCEPT_LOAD_CELL_1 .0020671 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 //#define Y_INTERCEPT_LOAD_CELL_1 17.3 //computed from testing load cell and graphing in excel lbs vs output voltage mV
-#define X_INTERCEPT_LOAD_CELL_2 2.0644 //computed from testing load cell and graphing in excel lbs vs output voltage mV
+#define X_INTERCEPT_LOAD_CELL_2 .0020644 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 //#define Y_INTERCEPT_LOAD_CELL_2 20.6 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 #define AREA_FOOT_SENSOR 4.909 //brett found this number in in^2
 #define GAIN_TOE_HEEL 2
