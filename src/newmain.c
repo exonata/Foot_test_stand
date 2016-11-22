@@ -189,9 +189,11 @@ int updateVals()
 		pSamples[sample]->heelVal =  getFootVal(sample, heel);
 		
 		printf(	"Force: %.3Lf "
+				"getLoadCell %.3Lf "
 					"Toe Val: %.2Lf "
 					"Heel Val %.2Lf\n",				
 					pSamples[sample]->measuredForce,
+					getLoadCell(sample),
 					pSamples[sample]->toeVal,
 					pSamples[sample]->heelVal);
 		
@@ -243,7 +245,7 @@ long double getLoadCell(int16_t sampleNum)
 		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
 	
-	printf("Force: %.2L, ceil forcef\n", force, ceil(force));
+	printf("Force: %.2Lf, ceil force: %.2Lf\n", force, ceil(force));
 
 	return(ceil(force));
 }
@@ -301,7 +303,7 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 			constRes1 = (actualVoltage1) / FIVE_V_INPUT;
 			r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
+			//printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
 			
 			
 			
@@ -320,7 +322,7 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 			constRes1 = (actualVoltage1) / FIVE_V_INPUT;
 			r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
+			//printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
 		}
 		else
 		{
