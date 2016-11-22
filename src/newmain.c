@@ -225,7 +225,8 @@ float getLoadCell(int16_t sampleNum)
 		//sample = buffer_LOAD_CELL_1[0];o
 		sample =  readADC(0);
 		signal(SIGALRM, SIG_IGN);
-		float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+		actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+		printf("actual voltage: %f\n", actualVoltage);
 		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
 		//force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);	
 		signal(SIGALRM, SIG_IGN);
@@ -315,14 +316,14 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 			sample = readADC(HEEL_1_ADC);
 			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 			//printf("voltage measured heel 1: %f\n", voltageMeasured);
-			//float r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
-			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			
-			actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
-			//printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, actualVoltage1);
-			constRes1 = (actualVoltage1) / FIVE_V_INPUT;
-			r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
+			r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
+			//actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
+			//printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, actualVoltage1);
+			//constRes1 = (actualVoltage1) / FIVE_V_INPUT;
+			//r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
+			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
 			//printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
 		}
 		else
