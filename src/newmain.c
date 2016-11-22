@@ -218,7 +218,8 @@ long double getLoadCell(int16_t sampleNum)
 	alarm(10000000);
 	float force;
 	unsigned int sample;
-	if (sampleNum == sample_A) {
+	if (sampleNum == sample_A) 
+	{
 		//sample = buffer_LOAD_CELL_1[0];
 		sample =  readADC(0);
 		signal(SIGALRM, SIG_IGN);
@@ -228,17 +229,21 @@ long double getLoadCell(int16_t sampleNum)
 		signal(SIGALRM, SIG_IGN);
 		printf("Measurement LC1 is sample: %d, force: %f\n", sample, ceil(force));
 		
-	} else if (sampleNum == sample_B) {
+	}
+	else if (sampleNum == sample_B) 
+	{
 		//sample = buffer_LOAD_CELL_2[0];
 		sample =  readADC(1);
 		signal(SIGALRM, SIG_IGN);
 		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		//force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
 		float force = ((sample - Y_INTERCEPT_LOAD_CELL_2) / X_INTERCEPT_LOAD_CELL_2);
-		
+		printf("I am in the wrong loop\n");
 		signal(SIGALRM, SIG_IGN);
 		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
+	
+	printf("Force: %.2L, ceil forcef\n", force, ceil(force));
 
 	return(ceil(force));
 }
