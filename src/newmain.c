@@ -228,7 +228,8 @@ float getLoadCell(int16_t sampleNum)
 		//float actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		//force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
 		force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);	
-		signal(SIGALRM, SIG_IG
+		signal(SIGALRM, SIG_IGN);
+				
 		printf("Measurement LC1 is sample: %d, force: %f\n", sample, ceil(force));
 		
 	}
