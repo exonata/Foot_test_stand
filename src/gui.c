@@ -195,13 +195,11 @@ void *doSomeThing(void *arg)
 
     	signal(SIGALRM, SIG_IGN);
     	//alarm(100000);
-		//printf("Going into while loop\n");
 		runTest();
 		signal(SIGALRM, SIG_IGN);
     }
     signal(SIGALRM, SIG_IGN);
 	printf("TEST COMPLETE!\n");
-	//freeEverything();
 	startTest = 0; //reset start test to zero
     return NULL;
 }
@@ -437,24 +435,18 @@ void runTest(text_responses *text_obj) {
 				printf("init \n");
 				iolib_init(); 				//initiate GPIO library
 				initValve();   				//initiate valve pins
-				//initADC();    				//set up ADCs
 				signal(SIGALRM, SIG_IGN);
-				//enableLoadCellADC(); 	 	//enable load cell pins
-				//enableFootADC(); 
 				signal(SIGALRM, SIG_IGN);
 				initTest();
 				break;
 				
 			case downStep:	
-				//printf("upstep\n");
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case upStep:	
-				//printf("downstep\n");
 				UpDownStepValveConfig(currentState, nextState);
 				break;
 			case hold:
-				printf("hold\n");
 				if (currentState != nextState) {
 					if(nextState == downStep) {
 						initTest();
@@ -474,11 +466,9 @@ void runTest(text_responses *text_obj) {
 				break;
 				
 			case reset:
-				printf("reset\n");
 				break;
 				
 			case quit:
-				printf("break\n");
 				break;
 				
 			default:
@@ -486,6 +476,7 @@ void runTest(text_responses *text_obj) {
 
 		}
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
+		
 		//check sample substate, see if contact of sensor is made
 		for (int16_t sample = sample_A; sample < paramu16("numSAMPLE", "Get", 0); sample++) {
 			analyzeContact(sample);
@@ -507,17 +498,19 @@ void runTest(text_responses *text_obj) {
 		
 		//log data
 		logData();
+		
 		if(currentState == quit) {
 			break; //break for the while loop
 		}
+		
 		//set current state to next state
 		param16("currentState", "Set", param16("nextState", "Get", 0));
 		signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	}
+	
 	configPauseReset();
 	turnOffPressureReg(); //turn off pressure regulator at end of test
 	freeEverything();
-
 }
 
 //test method for testing ADC0 and ADC1
@@ -643,26 +636,7 @@ void testADC() {
 		      printf("ADC 3: %f ohms\n", resistanceT);
 			 sleep(2);
 			 
-		 }
-	
-	
-	
-	
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		 }		
 	/*
 	
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
@@ -814,13 +788,12 @@ int main (int    argc,
 	system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
 	
 	
-	initValve();   				//initiate valve pins
+	//initValve();   				//initiate valve pins
 	//initADC();    				//set up ADCs
 	//enableLoadCellADC(); 	 	//enable load cell pins
 	//enableFootADC();  			//enable foot adc pins
 	//run GUI
 	//testADC();
-	
 	
 	GtkApplication *app;
 	int status;

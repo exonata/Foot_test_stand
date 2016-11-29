@@ -167,42 +167,26 @@ const char * getStateEnum(int16_t state)
 	}
 }
 
-/** @brief Return raw value of desired load cell
+/** @brief Update all ADC buffers
  *
  *
- * @param sampleNum      input desired load cell number to sample from
- *
- * @return return float of load cell raw value.
+ * @return int 1
  */
 
 int updateVals()
 {
-	printf("update ADC\n");
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
-	//BBBIO_ADCTSC_work(SAMPLE_SIZE);
-	for(int16_t sample = sample_A; sample < pParam->numSAMPLE; sample++) {
+	for(int16_t sample = sample_A; sample < pParam->numSAMPLE; sample++) 
+	{
 		signal(SIGALRM, SIG_IGN);
 		pSamples[sample]->measuredForce = getLoadCell(sample);
 		signal(SIGALRM, SIG_IGN);
 		pSamples[sample]->toeVal =  getFootVal(sample, toe);
 		pSamples[sample]->heelVal =  getFootVal(sample, heel);
-		
-		printf(	"Force: %f "
-				"getLoadCell %f "
-					"Toe Val: %.2Lf "
-					"Heel Val %.2Lf\n",				
-					pSamples[sample]->measuredForce,
-					getLoadCell(sample),
-					pSamples[sample]->toeVal,
-					pSamples[sample]->heelVal);
-		
-		}
-	
+	}
 	signal(SIGALRM, SIG_IGN);
-	
 	return 1; 
-	
 }
 
 /** @brief Return raw value of desired load cell
@@ -214,8 +198,6 @@ int updateVals()
  */
 float getLoadCell(int16_t sampleNum)
 {
-	
-	
 	signal(SIGALRM, SIG_IGN); // need to ignore the stupid timer
 	alarm(10000000);
 	float force, actualVoltage;
@@ -226,12 +208,9 @@ float getLoadCell(int16_t sampleNum)
 		sample =  readADC(0);
 		signal(SIGALRM, SIG_IGN);
 		actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-		printf("actual voltage: %f\n", actualVoltage);
 		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
-		//force = ((sample - Y_INTERCEPT_LOAD_CELL_1 ) / X_INTERCEPT_LOAD_CELL_1);	
 		signal(SIGALRM, SIG_IGN);
-				
-		printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
+		//printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
 		
 	}
 	else if (sampleNum == sample_B) 
@@ -241,14 +220,9 @@ float getLoadCell(int16_t sampleNum)
 		signal(SIGALRM, SIG_IGN);
 		actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		force = (actualVoltage - offSetLC2) / X_INTERCEPT_LOAD_CELL_2;
-		//force = ((sample - Y_INTERCEPT_LOAD_CELL_2) / X_INTERCEPT_LOAD_CELL_2);
-		//printf("I am in the wrong loop\n");
 		signal(SIGALRM, SIG_IGN);
 		//printf("Measurement LC2 is %d, %f\n", sample, force);
 	}
-	
-	//printf("Force: %f, ceil force: %f\n", force, ceil(force));
-
 	return(force);
 }
 
@@ -286,78 +260,62 @@ double UpdatePID(SPid * pid, double error, double position) {
  */
 long double getFootVal(int16_t sampleNum, int toeHeel)
 {
-	//printf("got into foot val\n");
-	
-	
 	long double resistance, r1_resistance, actualVoltage1, constRes1, voltageMeasured;
-	
 	unsigned int sample;
-		if (sampleNum == sample_A) {
-		if (toeHeel == toe) {
-			//sample = buffer_TOE_1_ADC[0];
-			sample =  readADC(TOE_1_ADC);
-			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			
-			r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
-			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
-			//actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
-			//constRes1 = (actualVoltage1) / FIVE_V_INPUT;
-			//r1_resistance = (R2_TOE - constRes1 * R2_TOE) / constRes1;
-			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			//printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
-			
-			
-			
+	
+		if (sampleNum == sample_A) 
+		{
+			if (toeHeel == toe) 
+			{
+				//sample = buffer_TOE_1_ADC[0];
+				sample =  readADC(TOE_1_ADC);
+				voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;	
+				r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+				resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+				printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
+			} 
+			else if (toeHeel == heel) 
+			{
+				//sample = buffer_HEEL_1_ADC[0];
+				sample = readADC(HEEL_1_ADC);
+				voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+				r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+				resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+				printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
+			}
+			else
+			{
+				printf("Error: toe or heel val not requested\n");
+			}
 		} 
-		else if (toeHeel == heel) 
+		else if (sampleNum == sample_B) 
 		{
-			//sample = buffer_HEEL_1_ADC[0];
-			sample = readADC(HEEL_1_ADC);
-			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured heel 1: %f\n", voltageMeasured);
-			r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
-			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
-			//actualVoltage1 = sample / (float) GAIN_TOE_HEEL;
-			//printf("voltage measured toe 1 is sample: %d, voltage: %f\n", sample, actualVoltage1);
-			//constRes1 = (actualVoltage1) / FIVE_V_INPUT;
-			//r1_resistance = (R2_HEEL - constRes1 * R2_HEEL) / constRes1;
-			//resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-			//printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, actualVoltage1, resistance);
+			if (toeHeel == toe) 
+			{
+				//sample = buffer_TOE_2_ADC[0];
+				sample = readADC(TOE_2_ADC);
+				voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+				r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+				resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			} 
+			else if (toeHeel == heel) 
+			{
+				//sample = buffer_HEEL_2_ADC[0];
+				sample = readADC(HEEL_2_ADC);
+				voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
+				r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
+				resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+			}
+			else
+			{
+				printf("Error: toe or heel val not requested\n");
+			}
 		}
 		else
 		{
-			printf("Error: toe or heel val not requested\n");
+			printf("Error: Sample A or B not requested\n");
 		}
-	} 
-	else if (sampleNum == sample_B) 
-	{
-		if (toeHeel == toe) {
-			//sample = buffer_TOE_2_ADC[0];
-			sample = readADC(TOE_2_ADC);
-			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured toe 2: %f\n", voltageMeasured);
-			r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
-			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-		} else if (toeHeel == heel) {
-			//sample = buffer_HEEL_2_ADC[0];
-			sample = readADC(HEEL_2_ADC);
-			voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
-			//printf("voltage measured heel 1: %f\n", voltageMeasured);
-			r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
-			resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-		}
-		else
-		{
-			printf("Error: toe or heel val not requested\n");
-		}
-	}
-	else
-	{
-		printf("Error: Sample A or B not requested\n");
-	}
-	return(resistance);
+		return(resistance);
 }
 
 
@@ -375,10 +333,8 @@ void openValve(int16_t valveDefine)
 	case verticalValve:
 		pin_high(HEADER_P8,SOL_VALVE_1); //excite valve 1
 		pin_low(HEADER_P8,SOL_VALVE_2); //unexcite valve 2
-		printf("numSample: %d, MAX_SAMPLE: %d \n", pParam->numSAMPLE, MAX_SAMPLE);
 		if(pParam->numSAMPLE == MAX_SAMPLE)
 		{
-			printf("sample b upstep \n");
 			pin_high(HEADER_P8,SOL_VALVE_3); //excite valve 3
 			pin_low(HEADER_P8,SOL_VALVE_4); //unexcite valve 4
 		}		
@@ -525,29 +481,25 @@ void logData()
 
 						pSamples[sample]->bLogCreated = true;
 					}
+					fprintf(outfile[sample],
+						"%lld "
+						"%d "
+						"%d "
+						"%d "
+						"%.3f "
+						"%.3Lf "
+						"%.2Lf "
+						"%.2Lf\n",
+						pParam->currentTime_ms,
+						pSamples[sample]->dataCount ,
+						pParam->count,
+						pParam->currentState,
+						pSamples[sample]->desiredForce,
+						pSamples[sample]->measuredForce,
+						pSamples[sample]->toeVal,
+						pSamples[sample]->heelVal);
 					
-		//
-					
-				printf("Logging data\n");
-				fprintf(outfile[sample],
-					"%lld "
-					"%d "
-					"%d "
-					"%d "
-					"%.3f "
-					"%.3Lf "
-					"%.2Lf "
-					"%.2Lf\n",
-					pParam->currentTime_ms,
-					pSamples[sample]->dataCount ,
-					pParam->count,
-					pParam->currentState,
-					pSamples[sample]->desiredForce,
-					pSamples[sample]->measuredForce,
-					pSamples[sample]->toeVal,
-					pSamples[sample]->heelVal);
-				
-				pSamples[sample]->dataCount += 1;
+					pSamples[sample]->dataCount += 1;
 			}
 		}
 	}
@@ -555,7 +507,7 @@ void logData()
 }
 
 /**
- * @brief initiliw
+ * @brief initilize a clean test before running test to requested parameters
  *
  *  Check flags to log data, if log hasn't been created print out headers first.
  *
@@ -589,7 +541,7 @@ void cleanTest(text_responses *text_obj) {
 
 	pParam->count = 0;
 	pParam->FORCE_PROF = 0;
-	//pParam->bTurnFlag = true;
+	pParam->bTurnFlag = true;
 	pParam->bLogTrue = true;
 	pParam->stateBeforePause = init;
 	pParam->bCommandFlag = false;
@@ -609,17 +561,23 @@ void cleanTest(text_responses *text_obj) {
 	updateVals();
 	
 	offSetLC1 = (ADC_MAX_V * readADC(LOAD_CELL_1)) / RESOLUTION_ADC;
-	printf("Sample 1 load cell offset: %f\n", offSetLC1);
+	//printf("Sample 1 load cell offset: %f\n", offSetLC1);
 	if (pParam->numSAMPLE == MAX_SAMPLE)
 	{
 		offSetLC2 = (ADC_MAX_V * readADC(LOAD_CELL_1)) / RESOLUTION_ADC;
-		printf("Sample 2 load cell offset: %f\n", offSetLC2);
+		//printf("Sample 2 load cell offset: %f\n", offSetLC2);
 	}
 }
 
-//grab the data from the gui to input into our struct, also initializes the log
+/**
+ * @brief print out test parameters in CLI
+ *
+ *		grab the data from the gui to input into our struct, 
+ *		also initializes the log
+ *
+ */
+//
 void initCLI(text_responses *text_obj) {
-	//replaced original initCLI with this code
 	const gchar *choice1 = gtk_entry_get_text ((GtkEntry *)text_obj->entry1);
 	gchar *choice2 = gtk_combo_box_text_get_active_text ((GtkComboBoxText *)text_obj->entry2);
 	const gchar *choice3 = gtk_entry_get_text ((GtkEntry *)text_obj->entry3);
@@ -650,7 +608,7 @@ void initCLI(text_responses *text_obj) {
 	int numCycles = atoll(choice6);
 	int turningPlates = atoll(choice7);
 	int rotatingPlates = atoi(choice1); //milliseconds
-
+	
 	//assign the pParams
 	pParam->desiredForce = desiredForce;
 	pParam->upStepTime_ms = upStep;
@@ -685,7 +643,6 @@ void initCLI(text_responses *text_obj) {
 		outfile[sample] = fopen(filename_1, "w");
 		strcpy(pSamples[sample]->fileName, filename_1);
 		printf("Saving sample #%d data to file: ", sample+1);
-		//printf("got hereeee\n");
 		printf(filename_1);
 		printf("\n");
 	}
