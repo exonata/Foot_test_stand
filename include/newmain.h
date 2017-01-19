@@ -170,7 +170,7 @@ double UpdatePID(SPid * pid, double error, double position);
 void enableLoadCellADC();
 long double getFootVal(int16_t sampleNum, int toeHeel);
 void enableFootADC();
-void setDesForce(float force);
+void setDesPSI(float psi);
 void turnOffPressureReg();
 void initADC();
 uint64_t getTimestamp_ms();

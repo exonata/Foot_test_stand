@@ -210,7 +210,7 @@ float getLoadCell(int16_t sampleNum)
 		actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
 		signal(SIGALRM, SIG_IGN);
-		//printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
+		printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
 		
 	}
 	else if (sampleNum == sample_B) 
@@ -272,7 +272,7 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 				voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;	
 				r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 				resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-				printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
+				//printf("voltage measured toe 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
 			} 
 			else if (toeHeel == heel) 
 			{
@@ -281,7 +281,7 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 				voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 				r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
 				resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
-				printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
+				//printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
 			}
 			else
 			{
@@ -392,10 +392,15 @@ void closeValve(int16_t valveDefine)
  *
  *
  */
-void setDesForce(float force)
+void setDesPSI(float psi)
 {
    	float duty;
-   	duty = (MAX_V_INPUT_PRESSREG*(force - MIN_PSI))/(V_OUT_MAX*PWM_GAIN*(MAX_PSI-MIN_PSI));
+   	if(psi > MAX_PSI || psi <= MIN_PSI)
+   	{
+   		
+   		printf("PSI out of range: %.2d \n", psi);
+   	}
+   	duty = (MAX_V_INPUT_PRESSREG*(psi - MIN_PSI))/(V_OUT_MAX*PWM_GAIN*(MAX_PSI-MIN_PSI));
 	BBBIO_PWMSS_Setting(BBBIO_PWMSS0, PWM_HZ, duty, duty);
 	BBBIO_ehrPWM_Enable(BBBIO_PWMSS0);
 }
@@ -420,7 +425,7 @@ void runPID(int16_t sample) {
 	//printf("This is the load cell measurement: %f lbs.\n", pSamples[sample]->measuredForce);
 	float error = pParam->desiredForce - pSamples[sample]->measuredForce;
 	float psiVal = UpdatePID(pid, error, pSamples[sample]->measuredForce);
-	setDesForce(psiVal);
+	setDesPSI(psiVal);
 }
 
 /**
@@ -532,7 +537,7 @@ void cleanTest(text_responses *text_obj) {
 		}
 	}
 	float psiForce = pParam->desiredForce / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
-	setDesForce(psiForce);
+	setDesPSI(psiForce);
 	updateVals();
 	for(int16_t sample = sample_A; sample < MAX_SAMPLE; sample++) {
 
