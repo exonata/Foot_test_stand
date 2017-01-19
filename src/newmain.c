@@ -395,10 +395,9 @@ void closeValve(int16_t valveDefine)
 void setDesPSI(float psi)
 {
    	float duty;
-   	if(psi > MAX_PSI || psi <= MIN_PSI)
+   	if(psi => MAX_PSI || psi <= MIN_PSI)
    	{
-   		
-   		printf("PSI out of range: %.2d \n", psi);
+   		printf("PSI out of range: %d \n", psi);
    	}
    	duty = (MAX_V_INPUT_PRESSREG*(psi - MIN_PSI))/(V_OUT_MAX*PWM_GAIN*(MAX_PSI-MIN_PSI));
 	BBBIO_PWMSS_Setting(BBBIO_PWMSS0, PWM_HZ, duty, duty);
@@ -548,7 +547,7 @@ void cleanTest(text_responses *text_obj) {
 
 	pParam->count = 0;
 	pParam->FORCE_PROF = 0;
-	pParam->bTurnFlag = true;
+	pParam->bTurnFlag = false;
 	pParam->bLogTrue = true;
 	pParam->stateBeforePause = init;
 	pParam->bCommandFlag = false;
