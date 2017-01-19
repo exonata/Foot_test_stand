@@ -395,7 +395,7 @@ void closeValve(int16_t valveDefine)
 void setDesPSI(float psi)
 {
    	float duty;
-   	if(psi => MAX_PSI || psi <= MIN_PSI)
+   	if(psi > MAX_PSI || psi <= MIN_PSI)
    	{
    		printf("PSI out of range: %d \n", psi);
    	}
