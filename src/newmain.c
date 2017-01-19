@@ -400,6 +400,7 @@ void setDesPSI(float psi)
    		printf("PSI out of range: %d \n", psi);
    	}
    	duty = (MAX_V_INPUT_PRESSREG*(psi - MIN_PSI))/(V_OUT_MAX*PWM_GAIN*(MAX_PSI-MIN_PSI));
+   	printf("duty cycle: %d\n", duty);
 	BBBIO_PWMSS_Setting(BBBIO_PWMSS0, PWM_HZ, duty, duty);
 	BBBIO_ehrPWM_Enable(BBBIO_PWMSS0);
 }
