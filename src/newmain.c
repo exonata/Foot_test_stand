@@ -537,6 +537,8 @@ void cleanTest(text_responses *text_obj) {
 		}
 	}
 	float psiForce = pParam->desiredForce / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
+	printf("Desired force: %f, desired PSI: %f \n", pParam->desiredForce, psiForce);
+	
 	setDesPSI(psiForce);
 	updateVals();
 	for(int16_t sample = sample_A; sample < MAX_SAMPLE; sample++) {
