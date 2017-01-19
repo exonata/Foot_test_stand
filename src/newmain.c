@@ -394,13 +394,14 @@ void closeValve(int16_t valveDefine)
  */
 void setDesPSI(float psi)
 {
-   	float duty;
+   	float duty, duty_alt;
    	if(psi > MAX_PSI || psi <= MIN_PSI)
    	{
-   		printf("PSI out of range: %d \n", psi);
+   		printf("PSI out of range: %f \n", psi);
    	}
    	duty = (MAX_V_INPUT_PRESSREG*(psi - MIN_PSI))/(V_OUT_MAX*PWM_GAIN*(MAX_PSI-MIN_PSI));
-   	printf("duty cycle: %d\n", duty);
+   	//duty_alt = (MAX_V_INPUT_PRESSREG*(psi - MIN_PSI))/(V_OUT_MAX*PWM_GAIN*(MAX_PSI-MIN_PSI));
+   	printf("duty cycle: %f\n", duty);
 	BBBIO_PWMSS_Setting(BBBIO_PWMSS0, PWM_HZ, duty, duty);
 	BBBIO_ehrPWM_Enable(BBBIO_PWMSS0);
 }
