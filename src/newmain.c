@@ -341,10 +341,11 @@ void openValve(int16_t valveDefine)
 		break;
 	case turnValve_A:
 		printf("turning logic for A\n");
-		pin_low(HEADER_P8,SOL_VALVE_5); //rotate valve 5
+		pin_low(HEADER_P8,SOL_VALVE_6); //rotate valve 5
 		break;
 	case turnValve_B:
-		pin_low(HEADER_P8,SOL_VALVE_6); //rotate valve 6
+		printf("turning logic for B\n");
+		pin_low(HEADER_P8,SOL_VALVE_5); //rotate valve 6
 		break;
 	default:
 		printf("Valve number not valid\n");
@@ -373,9 +374,11 @@ void closeValve(int16_t valveDefine)
 		}
 		break;
 	case turnValve_A:
+		printf("turning logic for A\n");
 		pin_high(HEADER_P8,SOL_VALVE_5); //rotate valve 5
 		break;
 	case turnValve_B:
+		printf("turning logic for B\n");
 		pin_high(HEADER_P8,SOL_VALVE_6); //rotate valve 6
 		break;
 	default:
