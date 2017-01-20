@@ -79,6 +79,12 @@ void initTest()
 	{
 		pSamples[numS]->bCurrentSensorContact = bSensorContact(pSamples[numS]);
 	}
+	if(pParam->bTurnFlag) {
+			closeValve(turnValve_A);  //open sample A turn plate valves
+			if (pParam->numSAMPLE == MAX_SAMPLE) {
+				closeValve(turnValve_B); //if there are two samples, open both valves
+			}
+		}
 }
 
 /**@brief enable load cell ADC channels using BBBioLib
