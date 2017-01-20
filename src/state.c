@@ -126,7 +126,7 @@ bool bSensorContact(data_t *pSample_t)
 {
 	bool newSubState;
 
-	if(pSample_t->baseForce + 5 < pSample_t->measuredForce)
+	if(pSample_t->baseForce + 5 < pSample_t->measuredForce && pSample_t->currentState == downStep)
 	{
 		newSubState = sensorContact;
 	}
