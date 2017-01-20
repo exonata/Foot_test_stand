@@ -340,6 +340,7 @@ void openValve(int16_t valveDefine)
 		}		
 		break;
 	case turnValve_A:
+		printf("turning logic for A\n");
 		pin_low(HEADER_P8,SOL_VALVE_5); //rotate valve 5
 		break;
 	case turnValve_B:
@@ -843,7 +844,7 @@ void analyzeContact(int16_t sample) {
 	pSamples[sample]->bNextSensorContact =bSensorContact(pSamples[sample]);
 //KAS- dont' know if we need both sensorcontact variables. should be able to use substate for current
 //RS-It checks to see if it is changing state so that it knows to open with a delay or not/close valve or to just use the previous command to that valve
-	int16_6 sample_output;
+	int16_t sample_output;
 	if (sample == sample_A)
 	{
 		sample_output = turnValve_A;
