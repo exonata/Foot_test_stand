@@ -210,7 +210,7 @@ float getLoadCell(int16_t sampleNum)
 		actualVoltage = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 		force = (actualVoltage - offSetLC1) / X_INTERCEPT_LOAD_CELL_1;
 		signal(SIGALRM, SIG_IGN);
-		printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
+		//printf("Measurement LC1 is sample: %d, force: %f\n", sample, force);
 		
 	}
 	else if (sampleNum == sample_B) 
@@ -549,7 +549,7 @@ void cleanTest(text_responses *text_obj) {
 
 	pParam->count = 0;
 	pParam->FORCE_PROF = 0;
-	pParam->bTurnFlag = false;
+	pParam->bTurnFlag = true;
 	pParam->bLogTrue = true;
 	pParam->stateBeforePause = init;
 	pParam->bCommandFlag = false;
@@ -842,7 +842,17 @@ void getTimersPrintStates() {
 void analyzeContact(int16_t sample) {
 	pSamples[sample]->bNextSensorContact =bSensorContact(pSamples[sample]);
 //KAS- dont' know if we need both sensorcontact variables. should be able to use substate for current
-	//RS-It checks to see if it is changing state so that it knows to open with a delay or not/close valve or to just use the previous command to that valve
+//RS-It checks to see if it is changing state so that it knows to open with a delay or not/close valve or to just use the previous command to that valve
+	int16_6 sample_output;
+	if (sample == sample_A)
+	{
+		sample_output = turnValve_A;
+	}
+	else
+	{
+		sample_output = turnValve_B;
+	}
+
 	if(pSamples[sample]->bNextSensorContact != pSamples[sample]->bCurrentSensorContact)
 	{
 		if(pParam->bTurnFlag)
@@ -851,14 +861,14 @@ void analyzeContact(int16_t sample) {
 			if(!pSamples[sample]->bNextSensorContact)
 				
 			{
-				printf("starting turning logic!\n");
+				printf("Turn sample: %d\n", sample);
 				delay(pParam->rotateDelay); //delay before rotation
-				openValve(sample);
+				openValve(sample_output);
 			}
 			else
 			{
 				delay(pParam->rotateDelay); //delay before rotation
-				closeValve(sample);
+				closeValve(sample_output);
 			}
 		}
 	}

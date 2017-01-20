@@ -92,7 +92,7 @@
 #define Y_INTERCEPT_LOAD_CELL_1 17.3 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 #define X_INTERCEPT_LOAD_CELL_2 .0020644 //computed from testing load cell and graphing in excel lbs vs output voltage mV
 #define Y_INTERCEPT_LOAD_CELL_2 20.6 //computed from testing load cell and graphing in excel lbs vs output voltage mV
-#define AREA_FOOT_SENSOR 4.909 //brett found this number in in^2
+#define AREA_FOOT_SENSOR 4.201 //brett found this number in in^2
 #define GAIN_TOE_HEEL 2
 #define R_TOE_HEEL 10000 //10K
 #define FOOT_SENSOR_INTERNAL_RES 470
