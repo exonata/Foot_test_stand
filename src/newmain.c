@@ -536,9 +536,9 @@ void cleanTest(text_responses *text_obj) {
 	//back to clean test code
 	openValve(verticalValve); 	//open linear cylinder valve
 	if(pParam->bTurnFlag) {
-		openValve(turnValve_A);  //open sample A turn plate valves
+		closeValve(turnValve_A);  //open sample A turn plate valves
 		if (pParam->numSAMPLE == MAX_SAMPLE) {
-			openValve(turnValve_B); //if there are two samples, open both valves
+			closeValve(turnValve_B); //if there are two samples, open both valves
 		}
 	}
 	float psiForce = pParam->desiredForce / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
