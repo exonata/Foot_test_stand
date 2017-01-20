@@ -872,7 +872,7 @@ void analyzeContact(int16_t sample) {
 			else
 			{
 				printf("Retract sample: %d\n", sample);
-				delay(pParam->rotateDelay); //delay before rotation
+				//delay(pParam->rotateDelay); //delay before rotation
 				closeValve(sample_output);
 			}
 		}
