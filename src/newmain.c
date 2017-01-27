@@ -559,7 +559,7 @@ void cleanTest(text_responses *text_obj) {
 
 	pParam->count = 0;
 	pParam->FORCE_PROF = 0;
-	pParam->bTurnFlag = true;
+	//pParam->bTurnFlag = false;
 	pParam->bLogTrue = true;
 	pParam->stateBeforePause = init;
 	pParam->bCommandFlag = false;
