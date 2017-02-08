@@ -627,13 +627,13 @@ void initCLI(text_responses *text_obj) {
 	int numCycles = atoll(choice6);
 	int turningPlates = atoll(choice7);
 	int rotatingPlates = atoi(choice1); //milliseconds
-	
+	int turningPlatesAlt;
 	if(choice7 == "YES"){
-		int turningPlatesAlt = true;
+		turningPlatesAlt = true;
 	}
 	else
 	{
-		int turningPlatesAlt = false;
+		turningPlatesAlt = false;
 	}
 
 	//assign the pParams
