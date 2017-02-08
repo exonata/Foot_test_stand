@@ -628,11 +628,11 @@ void initCLI(text_responses *text_obj) {
 	int turningPlates = atoll(choice7);
 	int rotatingPlates = atoi(choice1); //milliseconds
 	int turningPlatesAlt;
-	if(strcmp(choice7, "YES")){
+	if(strcmp(choice7, "YES") == 0){
 		printf("here in alt plates yes\n");
 		turningPlatesAlt = true;
 	}
-	else if(strcmp(choice7, "NO"))
+	else if(strcmp(choice7, "NO") == 0)
 	{
 		printf("here in alt plates no\n");
 		turningPlatesAlt = false;
@@ -761,7 +761,7 @@ bool paramBool (char *selection, char * setGet, bool value) {
 				pParam->bTurnFlag = value;
 			} else if (strcmp(selection,"bCommandFlag") == 0) {
 				pParam->bCommandFlag = value;
-			} else if (strcmp(selection,"bLogTrue") == 0) {
+			} else if (strcmp(selection,"bLog") == 0) {
 				pParam->bLogTrue = value;
 			} else if (strcmp(selection,"bCleanTest") == 0) {
 				pParam->bCleanTest = value;
