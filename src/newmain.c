@@ -75,7 +75,7 @@ void initTest()
 	pParam->bLogTrue = true;
 	pParam->bUpFlag = false;
 	pParam->bDownFlag = false;
-	printf("turn flag : %d \n",pParam->bTurnflag);
+	printf("turn flag : %d \n",pParam->bTurnFlag);
 	for(int16_t numS = sample_A; numS < MAX_SAMPLE; numS ++)
 	{
 		pSamples[numS]->bCurrentSensorContact = bSensorContact(pSamples[numS]);
