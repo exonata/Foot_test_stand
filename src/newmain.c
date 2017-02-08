@@ -628,11 +628,11 @@ void initCLI(text_responses *text_obj) {
 	int turningPlates = atoll(choice7);
 	int rotatingPlates = atoi(choice1); //milliseconds
 	int turningPlatesAlt;
-	if(choice7 == "YES"){
+	if(strcmp(choice7, "YES")){
 		printf("here in alt plates yes\n");
 		turningPlatesAlt = true;
 	}
-	else if(choice7 == "NO")
+	else if(strcmp(choice7, "NO"))
 	{
 		printf("here in alt plates no\n");
 		turningPlatesAlt = false;
