@@ -286,7 +286,7 @@ long double getFootVal(int16_t sampleNum, int toeHeel)
 				sample = readADC(HEEL_1_ADC);
 				voltageMeasured = (ADC_MAX_V * sample) / RESOLUTION_ADC;
 				r1_resistance = (ADC_MAX_V*R_TOE_HEEL - voltageMeasured * R_TOE_HEEL) / voltageMeasured;
-				resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES;
+				resistance = r1_resistance - FOOT_SENSOR_INTERNAL_RES; //cheing on printf
 				//printf("voltage measured heel 1 is sample: %d, voltage: %Lf, resistance: %Lf\n", sample, voltageMeasured, resistance);
 			}
 			else
