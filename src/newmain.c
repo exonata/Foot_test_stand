@@ -629,6 +629,7 @@ void initCLI(text_responses *text_obj) {
 	int rotatingPlates = atoi(choice1); //milliseconds
 	int turningPlatesAlt;
 	if(choice7 == "YES"){
+		printf("here in alt plates\n");
 		turningPlatesAlt = true;
 	}
 	else
