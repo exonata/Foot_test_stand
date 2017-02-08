@@ -108,6 +108,8 @@ int16_t stateMachine(test_param_t *pParam_t)
 			break;
 		}
 	}
+
+
 	return newState;
 
 }
@@ -129,6 +131,7 @@ bool bSensorContact(data_t *pSample_t)
 	if(pSample_t->baseForce + 10 < pSample_t->measuredForce)
 	{
 		newSubState = sensorContact;
+		printf("sensor contact made\n")
 	}
 	else
 	{
