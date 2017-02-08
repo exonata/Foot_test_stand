@@ -627,15 +627,15 @@ void initCLI(text_responses *text_obj) {
 	int numCycles = atoll(choice6);
 	int turningPlates = atoll(choice7);
 	int rotatingPlates = atoi(choice1); //milliseconds
-	int turningPlatesAlt;
+
 	if(strcmp(choice7, "YES") == 0){
 		printf("here in alt plates yes\n");
-		turningPlatesAlt = true;
+		turningPlates = true;
 	}
 	else if(strcmp(choice7, "NO") == 0)
 	{
 		printf("here in alt plates no\n");
-		turningPlatesAlt = false;
+		turningPlates = false;
 	}
 	else {
 		printf("what is choice7: %s \n", choice7);
@@ -651,7 +651,7 @@ void initCLI(text_responses *text_obj) {
 	pParam->rotateDelay = rotatingPlates;
 	printf("turning plates in init CLI: %d, choice 7: ", pParam->bTurnFlag);
 	printf(choice7);
-	printf(", turning plate: %d, alt turning plates: %d \n", turningPlates, turningPlatesAlt);
+	printf(", turning plate: %d \n", turningPlates);
 	//mark the clean test as true and current State as init
 	pParam->bCleanTest = true;
 	pParam->currentState = init;
