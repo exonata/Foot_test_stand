@@ -629,12 +629,16 @@ void initCLI(text_responses *text_obj) {
 	int rotatingPlates = atoi(choice1); //milliseconds
 	int turningPlatesAlt;
 	if(choice7 == "YES"){
-		printf("here in alt plates\n");
+		printf("here in alt plates yes\n");
 		turningPlatesAlt = true;
 	}
-	else
+	else if(choice7 == "NO")
 	{
+		printf("here in alt plates no\n");
 		turningPlatesAlt = false;
+	}
+	else {
+		printf("what is choice7: %s \n", choice7);
 	}
 
 	//assign the pParams
