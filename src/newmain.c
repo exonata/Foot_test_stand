@@ -636,7 +636,9 @@ void initCLI(text_responses *text_obj) {
 	pParam->numSAMPLE = numSamples;
 	pParam->bTurnFlag = turningPlates;
 	pParam->rotateDelay = rotatingPlates;
-	printf("turning plates in init CLI: %d, c \n", pParam->bTurnFlag);
+	printf("turning plates in init CLI: %d, choice 7: ", pParam->bTurnFlag);
+	printf(choice7);
+	printf(", turning plate: %d \n", turningPlates);
 	//mark the clean test as true and current State as init
 	pParam->bCleanTest = true;
 	pParam->currentState = init;
