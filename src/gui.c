@@ -786,6 +786,7 @@ int main (int    argc,
 	*/
 	iolib_init(); 				//initiate GPIO library
 	system("echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots");
+	system("echo BBBIO-EHRPWM > /sys/devices/bone_capemgr.9/slots");
 	
 	
 	//initValve();   				//initiate valve pins
