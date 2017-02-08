@@ -136,6 +136,7 @@ bool bSensorContact(data_t *pSample_t)
 	else
 	{
 		newSubState = noSensorContact;
+		printf("no sensor contact made\n");
 	}
 	return newSubState;
 }
