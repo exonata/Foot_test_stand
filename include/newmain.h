@@ -103,7 +103,7 @@
 #define R2_TOE 322
 #define R2_HEEL 2298
 
-#define UP_STEP_PSI 20
+//#define UP_STEP_PSI 20
 
 typedef struct data_t{
 	uint16_t sampleNum, currentSubState, nextSubState;
