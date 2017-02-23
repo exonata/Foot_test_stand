@@ -548,7 +548,7 @@ void cleanTest(text_responses *text_obj) {
 			closeValve(turnValve_B); //if there are two samples, open both valves
 		}
 	}
-	float psiForce = (pParam->desiredForce-ASSM_MASS) / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
+	float psiForce = (pParam->desiredForce-10) / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
 	printf("Desired force: %f, desired PSI: %f \n", pParam->desiredForce, psiForce);
 	
 	setDesPSI(psiForce);
