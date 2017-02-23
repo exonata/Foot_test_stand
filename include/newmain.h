@@ -98,7 +98,7 @@
 #define FOOT_SENSOR_INTERNAL_RES 470
 #define MAX_SAMPLE 2 //max number of samples
 #define MAX_BUF 64     //This is plenty large
-
+#define ASSM_MASS 12.8;
 #define FIVE_V_INPUT 4.8
 #define R2_TOE 322
 #define R2_HEEL 2298
