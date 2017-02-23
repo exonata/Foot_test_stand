@@ -396,10 +396,12 @@ void configPauseReset() {
 void UpDownStepValveConfig(int16_t currentState, int16_t nextState) {
 	if(currentState != nextState) { //need to begin transitioning to next state
 		if(nextState == upStep) {
+			setDesPSI(UP_STEP_PSI);
 			openValve(verticalValve);
 			paramu64("stepTime_ms", "Set", getTimestamp_ms());
 			paramBool("bDownFlag", "Set", true);
 		} else if (nextState == downStep) {
+			setDesPSI(pParam->psiForce);
 			closeValve(verticalValve);
 			paramu64("stepTime_ms", "Set", getTimestamp_ms());
 			paramBool("bUpFlag", "Set", true);

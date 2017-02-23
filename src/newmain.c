@@ -548,10 +548,10 @@ void cleanTest(text_responses *text_obj) {
 			closeValve(turnValve_B); //if there are two samples, open both valves
 		}
 	}
-	float psiForce = (pParam->desiredForce-10) / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
-	printf("Desired force: %f, desired PSI: %f \n", pParam->desiredForce, psiForce);
+	pParam->psiForce = (pParam->desiredForce-10) / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
+	printf("Desired force: %f, desired PSI: %f \n", pParam->desiredForce, pParam->psiForce);
 	
-	setDesPSI(psiForce);
+	setDesPSI(pParam->psiForce);
 	updateVals();
 	for(int16_t sample = sample_A; sample < MAX_SAMPLE; sample++) {
 

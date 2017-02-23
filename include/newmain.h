@@ -103,6 +103,8 @@
 #define R2_TOE 322
 #define R2_HEEL 2298
 
+#define UP_STEP_PSI 60
+
 typedef struct data_t{
 	uint16_t sampleNum, currentSubState, nextSubState;
 	uint32_t dataCount, lotNum, serialNum;
@@ -116,7 +118,7 @@ typedef struct test_param_t{
 	int16_t currentState, nextState, FORCE_PROF, stateBeforePause;
 	uint32_t upStepTime_ms, downStepTime_ms, count, cycle;
 	uint64_t stepTime_ms, elapsedTime_ms, currentTime_ms, logTime_ms, rotateDelay;
-	float desiredForce;
+	float desiredForce, psiForce;
 	bool bUpFlag, bDownFlag, bTurnFlag, bCommandFlag, bLogTrue, bCleanTest;
 }test_param_t;
 
