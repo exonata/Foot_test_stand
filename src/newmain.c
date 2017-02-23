@@ -548,7 +548,7 @@ void cleanTest(text_responses *text_obj) {
 			closeValve(turnValve_B); //if there are two samples, open both valves
 		}
 	}
-	float psiForce = pParam->desiredForce / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
+	float psiForce = (pParam->desiredForce) / AREA_FOOT_SENSOR; //need to convert pounds to psi for p regululator
 	printf("Desired force: %f, desired PSI: %f \n", pParam->desiredForce, psiForce);
 	
 	setDesPSI(psiForce);
@@ -901,12 +901,12 @@ void analyzeContact(int16_t sample) {
 	}
 //KAS- pid should run when foot is in contact only
 	//update force sensing with PID, and feed to pressure regulator
-	/*
+
 	if(pSamples[sample]->bCurrentSensorContact)
 	{
 		runPID(sample);
 	}
-	*/
+
 	pSamples[sample]->bCurrentSensorContact = pSamples[sample]->bNextSensorContact;
 }
 

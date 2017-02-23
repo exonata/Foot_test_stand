@@ -131,12 +131,12 @@ bool bSensorContact(data_t *pSample_t)
 	if(pSample_t->baseForce + 10 < pSample_t->measuredForce)
 	{
 		newSubState = sensorContact;
-		printf("sensor contact made\n");
+		//printf("sensor contact made\n");
 	}
 	else
 	{
 		newSubState = noSensorContact;
-		printf("no sensor contact made\n");
+		//printf("no sensor contact made\n");
 	}
 	return newSubState;
 }
